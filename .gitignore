@@ -8,3 +8,30 @@ __pycache__/
 *$py.class
 sas-venv/
 *.idea
+
+# Rasa specific files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.json
+*.md
+*.pkl
+
+# Rasa model directory
+models/
+
+# Rasa logs
+logs/
+
+# Rasa training files
+core/
+
+# Rasa temporary files
+.temp/
+
+.rasa/
