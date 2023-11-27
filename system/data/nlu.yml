@@ -89,3 +89,7 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+- intent: trigger_test
+  examples: |
+    - test
+    - run test ping
