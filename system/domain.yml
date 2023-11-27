@@ -30,6 +30,10 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
   
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request.
+  - text: I'm sorry for the misunderstanding but I'm an assistant that works only with information about electives and language courses.
+  - text: I'm sorry, I cannot answer that question.
 
 actions:
 - trigger_test_responce
