@@ -16,6 +16,9 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - intent: greet
+    - Hello Rasa, my name is [John](name)
+    - hi, my name is [John](name)
 
 - intent: goodbye
   examples: |

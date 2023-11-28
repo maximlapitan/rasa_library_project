@@ -1,7 +1,13 @@
 version: "3.1"
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 480
+  carry_over_slots_to_new_session: true
 
 intents:
-  - greet
+  - greet: 
+      use_entities: []
   - goodbye
   - affirm
   - deny
@@ -10,9 +16,25 @@ intents:
   - bot_challenge
   - trigger_test
 
+entities:
+  - name
+
+slots:
+  concerts:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+
+
+
 responses:
   utter_greet:
   - text: "Hey! How are you?"
+  
+  utter_greet_name:
+  - text: "Hello, {name}! Nice to meet you."
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
@@ -35,8 +57,7 @@ responses:
   - text: I'm sorry for the misunderstanding but I'm an assistant that works only with information about electives and language courses.
   - text: I'm sorry, I cannot answer that question.
 
+  
+
 actions:
 - trigger_test_responce
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true

@@ -29,9 +29,16 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
+- story: greet with name
+  steps:
+    - intent: greet
+    - entities:
+        - name: "John"
+    - action: utter_greet_name
+
+
 - story: test_ping
   steps: 
   - intent: trigger_test
   - action: trigger_test_responce
 
-  

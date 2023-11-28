@@ -52,3 +52,34 @@ class ActionHelloWorld(Action):
         return []
     
     
+class ActionSetUserName(Action):
+    def name(self) -> Text:
+        return "action_set_user_name"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        user_name = "John"  # You can replace this with logic to get the user's name
+        return [SlotSet("name", user_name)]
+
+
+class ActionGreetWithName(Action):
+    def name(self) -> Text:
+        return "action_greet_with_name"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Extract the name from the slot
+        user_name = tracker.get_slot("name")
+
+        if user_name:
+            message = f"Hello, {user_name}! Nice to meet you."
+        else:
+            message = "Hello there! What can I do for you?"
+
+        dispatcher.utter_message(text=message)
+
+        return []
