@@ -49,6 +49,17 @@ class ActionReturnMN(Action):
 
         if mn_value:
             message = f"Okay, your MN is {mn_value}"
+
+            url = f'http://127.0.0.1:3000/student/{mn_value}'
+            response = requests.get(url)
+            if response.status_code == 200:
+                # Print the content of the response (usually JSON or HTML)
+                name = response.json()["name"]
+                message = f"Your name is {name}"
+                
+            else:
+                message = f"Error: {response.status_code}"
+            
         else:
             message = "I couldn't extract the MN value from your message."
 
