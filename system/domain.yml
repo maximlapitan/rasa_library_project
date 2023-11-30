@@ -5,9 +5,15 @@ session_config:
   session_expiration_time: 480
   carry_over_slots_to_new_session: true
 
+slots:
+  MN:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: matriculation_number
+
 intents:
-  - greet: 
-      use_entities: []
+  - greet
   - goodbye
   - affirm
   - deny
@@ -15,16 +21,14 @@ intents:
   - mood_unhappy
   - bot_challenge
   - trigger_test
+  - out_of_scope
+  - say_matriculation
 
 entities:
-  - name
-
-slots:
-  concerts:
-    type: list
-    influence_conversation: false
-    mappings:
-    - type: custom
+  - matriculation_number:
+      use_synonyms: false
+      examples: |
+        - \d{9}
 
 
 
@@ -32,9 +36,6 @@ slots:
 responses:
   utter_greet:
   - text: "Hey! How are you?"
-  
-  utter_greet_name:
-  - text: "Hello, {name}! Nice to meet you."
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
@@ -57,7 +58,6 @@ responses:
   - text: I'm sorry for the misunderstanding but I'm an assistant that works only with information about electives and language courses.
   - text: I'm sorry, I cannot answer that question.
 
-  
-
 actions:
 - trigger_test_responce
+- return_mn

@@ -8,24 +8,11 @@
 # This is a simple example for a custom action which utters "Hello World!"
 
 from typing import Any, Text, Dict, List
-#
-from rasa_sdk import Action, Tracker
+
+from rasa_sdk import Action, Tracker, slots
 from rasa_sdk.executor import CollectingDispatcher
 import requests
-#
-#
-# class ActionHelloWorld(Action):
-#
-#     def name(self) -> Text:
-#         return "action_hello_world"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         dispatcher.utter_message(text="Hello World!")
-#
-#         return []
+
 
 class ActionHelloWorld(Action):
 
@@ -46,39 +33,24 @@ class ActionHelloWorld(Action):
         else:
             # Print an error message if the request was not successful
             print(f"Error: {response.status_code}")
-        
+
         dispatcher.utter_message(text=response.text)
 
         return []
-    
-    
-class ActionSetUserName(Action):
+
+
+class ActionReturnMN(Action):
     def name(self) -> Text:
-        return "action_set_user_name"
+        return "return_mn"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        user_name = "John"  # You can replace this with logic to get the user's name
-        return [SlotSet("name", user_name)]
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Extract the MN value from the tracker
+        mn_value = tracker.get_slot("MN")
 
-
-class ActionGreetWithName(Action):
-    def name(self) -> Text:
-        return "action_greet_with_name"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        # Extract the name from the slot
-        user_name = tracker.get_slot("name")
-
-        if user_name:
-            message = f"Hello, {user_name}! Nice to meet you."
+        if mn_value:
+            message = f"Okay, your MN is {mn_value}"
         else:
-            message = "Hello there! What can I do for you?"
+            message = "I couldn't extract the MN value from your message."
 
         dispatcher.utter_message(text=message)
 

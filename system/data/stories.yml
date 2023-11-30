@@ -29,16 +29,17 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: greet with name
-  steps:
-    - intent: greet
-    - entities:
-        - name: "John"
-    - action: utter_greet_name
-
 
 - story: test_ping
   steps: 
   - intent: trigger_test
   - action: trigger_test_responce
 
+- story: get matriculation
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: say_matriculation
+  - action: return_mn
+  - intent: goodbye
+  - action: utter_goodbye

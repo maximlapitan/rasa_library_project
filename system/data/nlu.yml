@@ -1,6 +1,19 @@
 version: "3.1"
 
 nlu:
+
+- regex: matriculation_number
+  examples: |
+    - \d{9}
+
+- synonym: matriculation_number
+  examples: |
+    - id
+    - MN
+    - student id
+    - number
+    - student number
+
 - intent: greet
   examples: |
     - hey
@@ -17,8 +30,6 @@ nlu:
     - goodevening
     - good afternoon
     - intent: greet
-    - Hello Rasa, my name is [John](name)
-    - hi, my name is [John](name)
 
 - intent: goodbye
   examples: |
@@ -108,3 +119,8 @@ nlu:
     - How to get up from bed?
     - Are there any events or workshops this month?
     - Tell me more about the cybersecurity workshop.
+
+- intent: say_matriculation
+  examples: |
+    - Hi, my id is [123456789](matriculation_number)
+    - Yes, it is [123456789](matriculation_number)
