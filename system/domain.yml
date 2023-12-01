@@ -12,6 +12,25 @@ slots:
     - type: from_entity
       entity: matriculation_number
 
+  name:
+    type: text
+    mappings:
+    - type: custom
+      action: remember_mn
+
+  surname:
+    type: text
+    mappings:
+    - type: custom
+      action: remember_mn
+      
+  gpa:
+    type: float
+    mappings:
+    - type: custom
+      action: remember_mn
+
+
   # name:
   #   type: text
   #   mappings:

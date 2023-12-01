@@ -24,11 +24,16 @@ def get_student_by_id(student_id):
     cursor = conn.cursor()
     cursor.execute(f"select * from student where student_mn={student_id};")
     conn.commit()
-    student = cursor.fetchall()[0]
     column_names = get_column_names("student")
-    result = jsonify(dict(zip(column_names, student)))
-    conn.close()
-    return result
+    try:
+        student = cursor.fetchall()[0]
+        result = jsonify(dict(zip(column_names, student)))
+        conn.close()
+        return result
+    except IndexError:
+        result = jsonify(dict(zip(column_names, [None,None,None,None])))
+        conn.close()
+        return result
 
 
 if __name__ == '__main__':

@@ -78,6 +78,7 @@ class ActionRememberMN(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         mn_value = tracker.get_slot("student_mn")
+        print(tracker.slots)
         person = {
             "name": None,
             "surname": None,
@@ -92,15 +93,24 @@ class ActionRememberMN(Action):
             if response.status_code == 200:
                 # Print the content of the response (usually JSON or HTML)
                 name = response.json()["name"]
-                message = f"Your name is {name}"
-                person = response.json()
+                gpa = response.json()["gpa"]
+                surname = response.json()["surname"]
+                number = response.json()["student_mn"]
+                if name is None:
+                    message = f"Your number {mn_value} is not found in our database. Try to correct the typo"
+                    dispatcher.utter_message(text=message)
+                else:
+                    message = f"Hello {name} {surname}, your id is {number} and gpa is {gpa}"
+                    person = response.json()
+                    dispatcher.utter_message(text=message)
+        
+                    return [SlotSet(key, value) for key, value in person.items() if key != "student_mn"]
             else:
                 message = f"Error: {response.status_code}"
+                return []
             
         else:
             print(mn_value)
-            message = "I couldn't extract the MN value from your message."
+            
 
-        dispatcher.utter_message(text=message)
         
-        return [SlotSet(key, value) for key, value in person.items()]
