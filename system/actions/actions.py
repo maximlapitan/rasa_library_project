@@ -82,7 +82,7 @@ class ActionRememberMN(Action):
             "name": None,
             "surname": None,
             "gpa": None,
-            "student_mn":None
+            "student_mn": mn_value
         }
         if mn_value:
             message = f"Okay, your student_mn is {mn_value}"
@@ -98,6 +98,7 @@ class ActionRememberMN(Action):
                 message = f"Error: {response.status_code}"
             
         else:
+            print(mn_value)
             message = "I couldn't extract the MN value from your message."
 
         dispatcher.utter_message(text=message)

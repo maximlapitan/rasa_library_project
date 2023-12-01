@@ -9,14 +9,11 @@ nlu:
 - synonym: matriculation_number
   examples: |
     - id
-    - student_mn
+    - MN
     - student id
     - number
     - student number
-    - MN
-    - student MN
-    - Matrikelnummer
-    - Nummer
+
 
 - intent: greet
   examples: |
@@ -128,7 +125,3 @@ nlu:
   examples: |
     - Hi, my id is [123456789](matriculation_number)
     - Yes, it is [123456789](matriculation_number)
-    - my number is [123456789](matriculation_number)
-    - [123456789](matriculation_number)
-    - sure, my matriculation number is [123456789](matriculation_number)
-    - my matriculation_number: [123456789](matriculation_number) 
