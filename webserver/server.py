@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.get("/test")
 def testfunc():
-    return "Success"
+    return "Success, the server is up and running, rasa is requesting as expected"
 
 def get_column_names(table_name):
     conn = sqlite3.connect('server_data/electives_description.db')

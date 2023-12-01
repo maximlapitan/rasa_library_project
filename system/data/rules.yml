@@ -16,3 +16,9 @@ rules:
   steps:
   - intent: out_of_scope
   - action: utter_out_of_scope
+
+
+- rule: remember_matriculation_number
+  steps: 
+  - intent: say_matriculation
+  - action: remember_mn

@@ -2,32 +2,32 @@ version: "3.1"
 
 stories:
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+# - story: happy path
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_great
+#   - action: utter_happy
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
+# - story: sad path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: affirm
+#   - action: utter_happy
 
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+# - story: sad path 2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: deny
+#   - action: utter_goodbye
 
 
 - story: test_ping
@@ -35,11 +35,18 @@ stories:
   - intent: trigger_test
   - action: trigger_test_responce
 
-- story: get matriculation
+# - story: get matriculation
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: say_matriculation
+#   - action: return_mn
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+- story: identify student
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: utter_ask_for_id
   - intent: say_matriculation
-  - action: return_mn
-  - intent: goodbye
-  - action: utter_goodbye
+  - action: remember_mn

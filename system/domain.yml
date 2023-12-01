@@ -6,11 +6,28 @@ session_config:
   carry_over_slots_to_new_session: true
 
 slots:
-  MN:
+  student_mn:
     type: text
     mappings:
-    - type: from_entity
-      entity: matriculation_number
+      - type: from_entity
+        entity: matriculation_number
+      - type: custom
+        action: remember_mn
+  name:
+    type: text
+    mappings:
+    - type: custom
+      action: remember_mn
+  surname:
+    type: text
+    mappings:
+    - type: custom
+      action: remember_mn
+  gpa:
+    type: float
+    mappings:
+    - type: custom
+      action: remember_mn
 
 intents:
   - greet
@@ -30,34 +47,37 @@ entities:
       examples: |
         - \d{9}
 
-
-
-
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+    - text: "Hey! How are you?"
 
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
-  - text: "Did that help you?"
+    - text: "Did that help you?"
 
   utter_happy:
-  - text: "Great, carry on!"
+    - text: "Great, carry on!"
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-  
-  utter_out_of_scope:
-  - text: Sorry, I can't handle that request.
-  - text: I'm sorry for the misunderstanding but I'm an assistant that works only with information about electives and language courses.
-  - text: I'm sorry, I cannot answer that question.
+    - text: "I am a bot, powered by Rasa."
 
+  utter_out_of_scope:
+    - text: Sorry, I can't handle that request.
+    - text: I'm sorry for the misunderstanding but I'm an assistant that works only with information about electives and language courses.
+    - text: I'm sorry, I cannot answer that question.
+
+  utter_ask_for_id:
+    - text: Hey, can I help you? I need you id for that
+    - text: Hi, can I have you id number please?
+    - text: Hello, please provide me your student id, so I can help you
+    - text: Hello dear student. Please give me your matriculation number, so I can assist you
 actions:
-- trigger_test_responce
-- return_mn
+  - trigger_test_responce
+  - return_mn
+  - remember_mn

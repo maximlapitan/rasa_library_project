@@ -10,6 +10,7 @@
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker, slots
+from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 import requests
 
@@ -45,10 +46,10 @@ class ActionReturnMN(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         # Extract the MN value from the tracker
-        mn_value = tracker.get_slot("MN")
+        mn_value = tracker.get_slot("student_mn")
 
         if mn_value:
-            message = f"Okay, your MN is {mn_value}"
+            message = f"Okay, your student_mn is {mn_value}"
 
             url = f'http://127.0.0.1:3000/student/{mn_value}'
             response = requests.get(url)
@@ -61,8 +62,44 @@ class ActionReturnMN(Action):
                 message = f"Error: {response.status_code}"
             
         else:
-            message = "I couldn't extract the MN value from your message."
+            message = "I couldn't extract the student_mn value from your message."
 
         dispatcher.utter_message(text=message)
 
         return []
+
+class ActionRememberMN(Action):
+
+    def name(self) -> Text:
+        return "remember_mn"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        mn_value = tracker.get_slot("student_mn")
+        person = {
+            "name": None,
+            "surname": None,
+            "gpa": None,
+            "student_mn":None
+        }
+        if mn_value:
+            message = f"Okay, your student_mn is {mn_value}"
+
+            url = f'http://127.0.0.1:3000/student/{mn_value}'
+            response = requests.get(url)
+            if response.status_code == 200:
+                # Print the content of the response (usually JSON or HTML)
+                name = response.json()["name"]
+                message = f"Your name is {name}"
+                person = response.json()
+            else:
+                message = f"Error: {response.status_code}"
+            
+        else:
+            message = "I couldn't extract the MN value from your message."
+
+        dispatcher.utter_message(text=message)
+        
+        return [SlotSet(key, value) for key, value in person.items()]
