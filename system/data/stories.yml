@@ -50,3 +50,13 @@ stories:
   - action: utter_ask_for_id
   - intent: say_matriculation
   - action: remember_mn
+  
+- story: attandancy policy
+  steps:
+  - intent: ask_policy
+  - action: utter_compulsory_attedance
+  - intent: ask_doctor
+  - action: utter_doctor_info
+  - intent: more_information
+  - action: utter_all_information
+

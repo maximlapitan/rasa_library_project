@@ -129,3 +129,40 @@ nlu:
     - [123456789](matriculation_number)
     - sure, my matriculation number is [123456789](matriculation_number)
     - my matriculation_number: [123456789](matriculation_number) 
+
+- intent: ask_policy
+  examples: |
+    - What are attandance rules
+    - What is going to happen
+    - What are the penalties for missing classes, and how strict is the attendance policy?
+
+- intent: ask_doctor
+  examples: |
+    - will doctor's certificate work?
+    - what if i provide doctor's certificate?
+    - are there legal options to be absent?
+    - Can I submit a doctor's certificate for my absence?
+    - If I have a doctor's certificate, will it be accepted?
+    - What is the policy regarding doctor's certificates?
+    - Are there any legal options for being absent if I have a doctor's note?
+    - Is a medical certificate considered a valid reason for absence?
+    - What documentation is required for a medical leave?
+    - If I provide a doctor's note, will it be considered as a valid excuse?
+    - How does the company handle absences due to medical reasons?
+    - Can I use a doctor's certificate as an excuse for missing work?
+    - What are the accepted reasons for being absent, especially related to medical issues?
+
+- intent: more_information
+  examples: |
+    - Give me more information.
+    - I want to have more information.
+    - More details, please.
+    - Can you provide additional information?
+    - What else can you tell me about this?
+    - I need more details on this topic.
+    - Could you give me further information?
+    - Tell me more about it.
+    - I'm interested in learning more.
+    - Provide me with additional details.
+    - I'd like to know more.
+    - What other information do you have?
