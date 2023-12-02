@@ -37,3 +37,5 @@ core/
 .rasa/
 
 results/
+
+*.sqbpro
