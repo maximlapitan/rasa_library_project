@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect
 
 import sqlite3
 
@@ -7,6 +7,12 @@ app = Flask(__name__)
 @app.get("/test")
 def testfunc():
     return "Success, the server is up and running, rasa is requesting as expected"
+
+@app.get("/languages/faq")
+def faq_func():
+    # return redirect("https://www.th-deg.de/Studierende/AWP-Sprachkurse/FAQ_EN.pdf")
+    return "https://www.th-deg.de/Studierende/AWP-Sprachkurse/FAQ_EN.pdf"
+
 
 def get_column_names(table_name):
     conn = sqlite3.connect('server_data/electives_description.db')

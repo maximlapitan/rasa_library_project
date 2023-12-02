@@ -113,4 +113,26 @@ class ActionRememberMN(Action):
             print(mn_value)
             
 
-        
+class ActionReturnFAQ(Action):
+
+    def name(self) -> Text:
+        return "return_faq"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        url = 'http://127.0.0.1:3000//languages/faq'
+        response = requests.get(url)
+
+        # Check if the request was successful (status code 200)
+        if response.status_code == 200:
+            # Print the response content
+            print(response.text)
+        else:
+            # Print an error message if the request was not successful
+            print(f"Error: {response.status_code}")
+
+        dispatcher.utter_message(text=response.text)
+
+        return []

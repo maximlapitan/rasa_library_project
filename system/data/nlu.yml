@@ -166,3 +166,91 @@ nlu:
     - Provide me with additional details.
     - I'd like to know more.
     - What other information do you have?
+
+- intent: get_faq
+  examples: |
+    - faq
+    - give me list of frequent questions
+    - most asked questions
+    - frequently asked questions link
+
+
+- intent: intent_differences
+  examples: |
+    - What are the differences between electives (AWP), compulsory language courses, and voluntary subjects?
+    - Explain the distinctions between electives, compulsory language courses, and voluntary subjects.
+    - Tell me about AWP subjects and compulsory language courses.
+
+- intent: intent_choose_language_as_awp
+  examples: |
+    - Can I choose a language course as an AWP subject?
+    - Is it possible to have a language course recognized as an AWP subject?
+    - How can I select a language course for AWP credit?
+
+- intent: intent_recognize_intensive_language_course
+  examples: |
+    - Can an intensive language course during the semester break be recognized as an AWP subject or compulsory language course?
+    - How can I recognize an intensive language course taken during the semester break?
+
+- intent: intent_select_multiple_awp_or_language_courses
+  examples: |
+    - Can I select more than one AWP subject or compulsory language course for my next semester?
+    - Is it possible to choose multiple AWP subjects or language courses?
+
+- intent: intent_prepone_or_postpone_course
+  examples: |
+    - Is it possible to prepone or postpone an AWP subject or compulsory language course?
+    - Can I change the timing of my AWP subject or language course due to a semester abroad?
+
+- intent: intent_recognize_voluntary_subject
+  examples: |
+    - Can a voluntary subject attended in a previous semester be recognized as an AWP subject or compulsory language course?
+    - Is it possible to recognize a voluntary subject as an AWP subject?
+
+- intent: intent_pick_best_grade_subject
+  examples: |
+    - Can I take several subjects as AWP subjects/compulsory language courses and subsequently pick the subject with the best grade for my certificate?
+    - Is it possible to select multiple subjects and choose the best grade for my certificate?
+
+- intent: intent_withdraw_from_course
+  examples: |
+    - Can I withdraw from a course during the semester if I don’t like it?
+    - Is it possible to deregister from a course if I change my mind?
+
+- intent: intent_switch_course_group
+  examples: |
+    - Can I switch to a different group if it is more suitable for my schedule?
+    - Is it possible to change my course group?
+
+- intent: intent_find_information
+  examples: |
+    - Where can I find important information about my lecture times, lecture postponements, general information, etc.?
+    - How can I get information about my courses?
+
+- intent: intent_fail_examination
+  examples: |
+    - What happens if I fail an examination?
+    - What are the consequences of failing an exam?
+    - Can I retake an exam if I fail?
+
+- intent: intent_repeat_exam_in_case_of_failure
+  examples: |
+    - If I fail an exam, can I retake it in the next semester?
+    - What should I do if I fail an examination?
+
+- intent: intent_attend_language_course_again
+  examples: |
+    - If I fail a language course, can I attend it again?
+    - What can I do if I fail a language course?
+
+- intent: intent_attend_several
+  examples: |
+    - Can I attend multiple electives at once?
+    - Is it possible to attend several German courses simultaneously?
+    - Can I enroll in two courses at the same time?
+    - Is attending more than one elective allowed?
+    - Am I allowed to take multiple language courses concurrently?
+    - What's the policy on attending several courses in a single semester?
+    - Is there a limit to the number of electives I can attend in one semester?
+    - Can I take several subjects as AWP subjects/compulsory language courses and subsequently pick the subject with the best grade for my certificate?
+

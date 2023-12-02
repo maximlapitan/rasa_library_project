@@ -61,6 +61,21 @@ intents:
   - ask_policy
   - ask_doctor
   - more_information
+  - get_faq
+  - intent_differences
+  - intent_choose_language_as_awp
+  - intent_recognize_intensive_language_course
+  - intent_select_multiple_awp_or_language_courses
+  - intent_prepone_or_postpone_course
+  - intent_recognize_voluntary_subject
+  - intent_pick_best_grade_subject
+  - intent_withdraw_from_course
+  - intent_switch_course_group
+  - intent_find_information
+  - intent_fail_examination
+  - intent_repeat_exam_in_case_of_failure
+  - intent_attend_language_course_again
+  - intent_attend_several
 
 entities:
   - matriculation_number:
@@ -137,9 +152,70 @@ responses:
     - text: "Certainly! For a detailed overview of the [THD Language center](https://www.th-deg.de/language-and-electives-centre#info), head to the official website. Get insights into language courses, electives, and more."
     - text: "Absolutely! The [THD Language center](https://www.th-deg.de/language-and-electives-centre#info) offers a plethora of information. Navigate to the official website for details on language courses, elective options, and additional resources."
 
+  utter_differences:
+      - text: |
+          An elective, or AWP subject (Allgemeinwissenschaftliches Wahlpflichtfach), or a compulsory language course are subjects specified in your study and examination regulations. Voluntary subjects are taken purely on a voluntary basis without accreditation of any ECTS credits.
+
+  utter_choose_language_as_awp:
+    - text: "Yes, it is possible to choose a language course as an AWP subject. It may even be a requirement in some degree programs."
+
+  utter_recognize_intensive_language_course:
+    - text: |
+        Of course! Our fee-based intensive language courses are offered at the end of each semester break. You will have to decide which type of credit you would like to receive when selecting the course: either as AWP subject, compulsory language course, or voluntary subject (without ECTS).
+
+  utter_select_multiple_awp_or_language_courses:
+    - text: |
+        If an AWP subject or a compulsory language course is scheduled for a particular semester, the faculty blocks the AWP and language time slots in the corresponding semester. If you prepone or postpone courses, or voluntarily take additional courses, you are welcome to register for additional courses after matching the lecture schedules of AWP subjects and language courses with your schedule of faculty lectures, as long as courses are still available.
+
+  utter_prepone_or_postpone_course:
+    - text: |
+        If your lecture schedule allows it, you can also prepone or postpone subjects. Please pay special attention to course times to avoid overlapping lectures.
+
+  utter_recognize_voluntary_subject:
+    - text: "No, a later recognition is unfortunately not possible. You need to decide which type of credit you would like to receive for the subject the moment you register for the examination at the latest."
+
+  utter_pick_best_grade_subject:
+    - text: "No, this is unfortunately not possible. The grade of the subject you first chose as AWP subject/compulsory language course counts and cannot be changed later on."
+
+  utter_withdraw_from_course:
+    - text: |
+        You may only deregister from an AWP subject or a compulsory language course if you have not yet written an examination in the subject or have not yet received a grade for it, and if it is still possible to deregister (7 days before the examination date at the latest).
+
+  utter_switch_course_group:
+    - text: "No, unfortunately, this is not possible and is only permitted in absolutely exceptional cases. Please contact us by e-mail (sprachenzentrum@th-deg.de) to clarify whether your case falls into this category."
+
+  utter_find_information:
+    - text: "You can find always all important information on our website: https://th-deg.de/de/studierende/sprachkurse-awp-faecher!"
+
+  utter_repeat_exam_in_case_of_failure:
+    - text: |
+        In case of failure, you will have to retake the examination in the second attempt in the following semester or in a third attempt within one year. Register for the repeat examination during the examination registration period.
+
+  utter_attend_language_course_again:
+    - text: |
+        If you have already fulfilled the attendance requirement for a language course, it's up to you whether you repeat the course or not. Consider discussing examination content with the lecturer for preparation.
+
+  utter_fail_examination:
+    - text: |
+        If you fail an examination, you can retake the exam in the second attempt within one year. Register for the repeat examination during the registration period. Repeat exams may occur earlier in the semester.
+
+        If the course isn't offered in your second or third attempt, a specific date will be set. While attendance is fulfilled for language courses, it's your choice to retake. Discussing content with the lecturer can be helpful. Note the lecturer conducting the course holds the examination.
+
+  utter_attend_several:
+    - text: No, this is unfortunately not possible.
+    - text: It is not possible to attend multiple AWP programmes at once
+    - text: "No, unfortunately, attending multiple electives simultaneously is not allowed."
+    - text: "It's not possible to attend more than one AWP program at the same time."
+    - text: "Attending multiple courses concurrently is not permitted."
+    - text: "Unfortunately, you can only attend one elective or AWP program at a time."
+    - text: "The policy does not allow attending several electives simultaneously."
+    - text: "You can only enroll in one elective or AWP program at a time."
+
+
 actions:
   - trigger_test_responce
   - return_mn
   - remember_mn
+  - return_faq
 
 
