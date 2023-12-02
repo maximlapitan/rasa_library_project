@@ -131,4 +131,4 @@ stories:
   - story: ask about attandance of multiple electives
     steps:
       - intent: intent_attend_several
-      - action: 
+      - action: utter_attend_several
