@@ -1,10 +1,14 @@
 from flask import Flask, request, jsonify, redirect
-
+from os.path import isfile
 import sqlite3
 
 app = Flask(__name__)
+file_location = ""
+if isfile("webserver/server_data/electives_description.db"):
+    file_location = "webserver/server_data/electives_description.db"
 
-
+if isfile("server_data/electives_description.db"):
+    file_location = "server_data/electives_description.db"
 
 @app.get("/test")
 def testfunc():
@@ -18,7 +22,7 @@ def faq_func():
 
 
 def get_column_names(table_name):
-    conn = sqlite3.connect('server_data/electives_description.db')
+    conn = sqlite3.connect(file_location)
     cursor = conn.cursor()
     cursor.execute(f"PRAGMA table_info({table_name})")
     column_info = cursor.fetchall()
@@ -29,7 +33,7 @@ def get_column_names(table_name):
 
 @app.get('/student/<int:student_id>')
 def get_student_by_id(student_id):
-    conn = sqlite3.connect('server_data/electives_description.db')
+    conn = sqlite3.connect(file_location)
     cursor = conn.cursor()
     cursor.execute(f"select * from student where student_mn={student_id};")
     conn.commit()
@@ -47,7 +51,7 @@ def get_student_by_id(student_id):
 
 @app.get("/languages/levels/<ll_value>")
 def give_info_by_level(ll_value):
-    conn = sqlite3.connect('server_data/electives_description.db')
+    conn = sqlite3.connect(file_location)
     cursor = conn.cursor()
     columns = ["elective_name", "link"]
     cursor.execute(
