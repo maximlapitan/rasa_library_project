@@ -4,7 +4,7 @@ nlu:
 
 - regex: matriculation_number
   examples: |
-    - \d{9}
+    - \d{8}
 
 - synonym: matriculation_number
   examples: |
