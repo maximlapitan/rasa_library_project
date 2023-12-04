@@ -12,6 +12,12 @@ slots:
     - type: from_entity
       entity: matriculation_number
 
+  language_lvl:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: language_level
+
   name:
     type: text
     mappings:
@@ -76,12 +82,18 @@ intents:
   - intent_repeat_exam_in_case_of_failure
   - intent_attend_language_course_again
   - intent_attend_several
+  - say_level_language
 
 entities:
   - matriculation_number:
       use_synonyms: true
       examples: |
-        - \d{9}
+        - \d{8}
+
+  - language_level:
+      use_synonyms: true
+      examples: |
+        - \(A1|A2|B1|B2|C1|C2)$
 
 responses:
   utter_greet:
@@ -113,6 +125,11 @@ responses:
     - text: Hi, can I have you id number please?
     - text: Hello, please provide me your student id, so I can help you
     - text: Hello dear student. Please give me your matriculation number, so I can assist you
+
+  utter_ask_for_level_language:
+    - text: Can I know your level of german language? 
+    - text: Can I know your level of knowledge of german language?
+    - text: Can I know your level of profficiency of german language?
 
   utter_compulsory_attedance:
     - text: "A language flourishes when it is heard and spoken. Therefore, all language courses require at least 75% lecture attendance to be permitted to the examination. Please read the general exam regulations section 4 art. 3.
@@ -217,5 +234,6 @@ actions:
   - return_mn
   - remember_mn
   - return_faq
+  - remember_level_language
 
 

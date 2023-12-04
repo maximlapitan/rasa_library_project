@@ -5,6 +5,10 @@ nlu:
 - regex: matriculation_number
   examples: |
     - \d{8}
+    
+- regex: language_level
+  examples: |
+    - (A1|A2|B1|B2|C1|C2)
 
 - synonym: matriculation_number
   examples: |
@@ -14,6 +18,13 @@ nlu:
     - number
     - student number
 
+- synonym: language_level
+  examples: |
+    - profficiency level
+    - language level
+    - level
+    - level of knowledge of language
+    - german level
 
 - intent: greet
   examples: |
@@ -129,6 +140,12 @@ nlu:
     - [123456789](matriculation_number)
     - sure, my matriculation number is [123456789](matriculation_number)
     - my matriculation_number: [123456789](matriculation_number) 
+
+- intent: say_level_language
+  examples: |
+    - My level of german is [A1](language_level)    
+    - My level of knowledge of german is [A1](language_level)
+    - My level of profficiency in german is [A1](language_level)
 
 - intent: ask_policy
   examples: |

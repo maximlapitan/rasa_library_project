@@ -4,9 +4,12 @@ import sqlite3
 
 app = Flask(__name__)
 
+
+
 @app.get("/test")
 def testfunc():
     return "Success, the server is up and running, rasa is requesting as expected"
+
 
 @app.get("/languages/faq")
 def faq_func():
@@ -22,8 +25,8 @@ def get_column_names(table_name):
     column_names = [info[1] for info in column_info]
     conn.close()
     return column_names
-    
-    
+
+
 @app.get('/student/<int:student_id>')
 def get_student_by_id(student_id):
     conn = sqlite3.connect('server_data/electives_description.db')
@@ -37,11 +40,27 @@ def get_student_by_id(student_id):
         conn.close()
         return result
     except IndexError:
-        result = jsonify(dict(zip(column_names, [None,None,None,None])))
+        result = jsonify(dict(zip(column_names, [None, None, None, None])))
         conn.close()
         return result
 
 
+@app.get("/languages/levels/<ll_value>")
+def give_info_by_level(ll_value):
+    conn = sqlite3.connect('server_data/electives_description.db')
+    cursor = conn.cursor()
+    columns = ["elective_name", "link"]
+    cursor.execute(
+        f'select {",".join(columns)} from electives where lower(elective_name) like "%{ll_value}%" and cathegory="german";')
+    conn.commit()
+    column_names = [column for column in get_column_names(
+        "electives") if column in columns]
+    electives = cursor.fetchall()
+    result = [dict(zip(column_names, elective)) for elective in electives]
+    print(electives)
+    conn.close()
+    return result
+
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=3000, debug=True)
-        

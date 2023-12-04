@@ -78,7 +78,6 @@ class ActionRememberMN(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         mn_value = tracker.get_slot("student_mn")
-        print(tracker.slots)
         person = {
             "name": None,
             "surname": None,
@@ -135,4 +134,39 @@ class ActionReturnFAQ(Action):
 
         dispatcher.utter_message(text=response.text)
 
+        return []
+    
+    
+class ActionRememberLL(Action):
+
+    def name(self) -> Text:
+        return "remember_level_language"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        ll_value = tracker.get_slot("language_lvl")
+
+        if ll_value:
+            
+            url = f'http://127.0.0.1:3000/languages/levels/{ll_value}'
+            print(url)
+            response = requests.get(url)
+            print(type(response.json()))
+            # Check if the request was successful (status code 200)
+            if response.status_code == 200:
+                # Print the response content
+                print(response.json())
+            else:
+                # Print an error message if the request was not successful
+                print(f"Error: {response.status_code}")
+            
+            message = f"You can choose from several options:\n" + "\n".join([elective["elective_name"] for elective in response.json()])
+            
+            # select * from electives where lower(elective_name) like "%a1%";
+            # message = f"Okay, your german level is {ll_value}"
+            
+            dispatcher.utter_message(text=message)
+            
         return []

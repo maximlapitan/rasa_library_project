@@ -22,3 +22,8 @@ rules:
   steps: 
   - intent: say_matriculation
   - action: remember_mn
+
+- rule: remember_level_language
+  steps:
+  - intent: say_level_language
+  - action: remember_level_language

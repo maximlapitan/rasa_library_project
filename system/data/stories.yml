@@ -49,6 +49,13 @@ stories:
       - intent: say_matriculation
       - action: remember_mn
 
+  - story: identify student's level of language
+    steps:
+      - intent: greet
+      - action: utter_ask_for_level_language
+      - intent: say_level_language
+      - action: remember_level_language    
+
   - story: attandancy policy
     steps:
       - intent: ask_policy
