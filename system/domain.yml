@@ -85,6 +85,9 @@ intents:
   - say_level_language
   - fallback
   - want_learn_german
+  - ask_register_procedure
+  - want_german_exam
+  - say_german_exam
 
 entities:
   - matriculation_number:
@@ -95,7 +98,7 @@ entities:
   - language_level:
       use_synonyms: true
       examples: |
-        - \(A1|A2|B1|B2|C1|C2)$
+        - (A1|A2|B1|B2|C1|C2)
 
 responses:
   utter_greet:
@@ -219,6 +222,12 @@ responses:
         If you fail an examination, you can retake the exam in the second attempt within one year. Register for the repeat examination during the registration period. Repeat exams may occur earlier in the semester.
 
         If the course isn't offered in your second or third attempt, a specific date will be set. While attendance is fulfilled for language courses, it's your choice to retake. Discussing content with the lecturer can be helpful. Note the lecturer conducting the course holds the examination.
+
+  utter_register_procedure:
+    - text: Check your email. It should be an email from julia.vollbrecht@th-deg.de. Inside this email you will be able to find instructions of registration. Good luck!
+
+  utter_which_exam:
+    - text: Which one exam do you like do pass? Say me its name. 
 
   utter_attend_several:
     - text: No, this is unfortunately not possible.

@@ -26,6 +26,14 @@ nlu:
     - level of knowledge of language
     - german level
 
+- synonym: exam_name
+  examples: |
+    - german exam
+    - exam
+    - level
+    - level of knowledge of language
+    - german level
+
 - intent: greet
   examples: |
     - hey
@@ -145,10 +153,17 @@ nlu:
     - My level of german is [A1](language_level)    
     - My level of knowledge of german is [A1](language_level)
     - My level of profficiency in german is [A1](language_level)
-    - [A1](language_level)
+    - [B2](language_level)
     - my level is [A1](language_level)
     - level is [A1](language_level)
     - I have [A1](language_level)
+
+- intent: ask_register_procedure
+  examples: |
+    - But how can I register on this course?
+    - How can I start attending this course?
+    - What is procedure of registration on this course?
+    - What is procedure of registration on this elective?
 
 - intent: ask_policy
   examples: |
@@ -285,4 +300,19 @@ nlu:
     - fallback
     - I don't understand
     - Can you rephrase that?
+
+- intent: want_german_exam
+  examples: |
+    - I want to register for a German exam. I don't know which one to choose. Can you help me with this?
+    - How do I register for a German exam?
+    - Can you guide me through the registration process for a German exam?
+    - I'm interested in taking a German exam. What are the steps for registration?
+    - What steps do I need to follow to register for a German exam?
+    - Is there any assistance available for registering for a German exam?
+    - Tell me about the process of signing up for a German language exam.
+    - I'm unsure about the German exam options. Can you provide information on registration?
+    - Could you assist me in choosing and registering for a German language exam?
+    - I'm considering a German exam. How can I proceed with the registration?
+    - What are the steps involved in registering for a German language proficiency test?
+
 

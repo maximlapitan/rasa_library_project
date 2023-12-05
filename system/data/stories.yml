@@ -55,8 +55,15 @@ stories:
       - action: utter_ask_for_level_language
       - intent: say_level_language
       - action: remember_level_language    
-      - intent: goodbye
-      - action: utter_goodbye
+      - intent: ask_register_procedure
+      - action: utter_register_procedure
+
+  - story: german exam registration
+    steps: 
+      - intent: want_german_exam
+      - action: utter_which_exam
+      - intent: say_german_exam
+      - action: exam_reg_procedure
 
   - story: attandancy policy
     steps:
