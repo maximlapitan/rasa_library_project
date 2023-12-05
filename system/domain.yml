@@ -83,6 +83,8 @@ intents:
   - intent_attend_language_course_again
   - intent_attend_several
   - say_level_language
+  - fallback
+  - want_learn_german
 
 entities:
   - matriculation_number:
@@ -237,3 +239,5 @@ actions:
   - remember_level_language
 
 
+utter_default_fallback:
+  - text: "I'm sorry, I didn't understand that. Can you please provide more information?"

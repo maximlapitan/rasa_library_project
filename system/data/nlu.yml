@@ -41,7 +41,6 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-    - intent: greet
 
 - intent: goodbye
   examples: |
@@ -146,6 +145,10 @@ nlu:
     - My level of german is [A1](language_level)    
     - My level of knowledge of german is [A1](language_level)
     - My level of profficiency in german is [A1](language_level)
+    - [A1](language_level)
+    - my level is [A1](language_level)
+    - level is [A1](language_level)
+    - I have [A1](language_level)
 
 - intent: ask_policy
   examples: |
@@ -270,4 +273,16 @@ nlu:
     - What's the policy on attending several courses in a single semester?
     - Is there a limit to the number of electives I can attend in one semester?
     - Can I take several subjects as AWP subjects/compulsory language courses and subsequently pick the subject with the best grade for my certificate?
+
+- intent: want_learn_german
+  examples: |
+    - I want to start lerning german
+    - What if I want to learn german?
+    - What's about study german with level?
+
+- intent: fallback
+  examples: |
+    - fallback
+    - I don't understand
+    - Can you rephrase that?
 

@@ -51,10 +51,12 @@ stories:
 
   - story: identify student's level of language
     steps:
-      - intent: greet
+      - intent: want_learn_german
       - action: utter_ask_for_level_language
       - intent: say_level_language
       - action: remember_level_language    
+      - intent: goodbye
+      - action: utter_goodbye
 
   - story: attandancy policy
     steps:
