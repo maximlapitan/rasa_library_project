@@ -9,33 +9,38 @@ slots:
   student_mn:
     type: text
     mappings:
-    - type: from_entity
-      entity: matriculation_number
+      - type: from_entity
+        entity: matriculation_number
 
   language_lvl:
     type: text
     mappings:
-    - type: from_entity
-      entity: language_level
+      - type: from_entity
+        entity: language_level
 
   name:
     type: text
     mappings:
-    - type: custom
-      action: remember_mn
+      - type: custom
+        action: remember_mn
 
   surname:
     type: text
     mappings:
-    - type: custom
-      action: remember_mn
-      
+      - type: custom
+        action: remember_mn
+
   gpa:
     type: float
     mappings:
-    - type: custom
-      action: remember_mn
+      - type: custom
+        action: remember_mn
 
+  german_exam:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: german_exam
 
   # name:
   #   type: text
@@ -100,6 +105,13 @@ entities:
       examples: |
         - (A1|A2|B1|B2|C1|C2)
 
+  - german_exam:
+      examples: |
+        - telc
+        - goethe
+        - toefl
+        - dsh
+
 responses:
   utter_greet:
     - text: "Hey! How are you?"
@@ -132,38 +144,44 @@ responses:
     - text: Hello dear student. Please give me your matriculation number, so I can assist you
 
   utter_ask_for_level_language:
-    - text: Can I know your level of german language? 
+    - text: Can I know your level of german language?
     - text: Can I know your level of knowledge of german language?
     - text: Can I know your level of profficiency of german language?
 
   utter_compulsory_attedance:
-    - text: "A language flourishes when it is heard and spoken. Therefore, all language courses require at least 75% lecture attendance to be permitted to the examination. Please read the general exam regulations section 4 art. 3.
-              75% attendance is:
-              \n* 3 absent times for courses with 2 weekly semester hours
-              \n* 6 absent times for courses with 4 weekly semester hours
-              \n* 9 absent times* for courses with 6 weekly semester hours
+    - text:
+        "A language flourishes when it is heard and spoken. Therefore, all language courses require at least 75% lecture attendance to be permitted to the examination. Please read the general exam regulations section 4 art. 3.
+        75% attendance is:
+        \n* 3 absent times for courses with 2 weekly semester hours
+        \n* 6 absent times for courses with 4 weekly semester hours
+        \n* 9 absent times* for courses with 6 weekly semester hours
 
-              \n(One absent time = 2 teaching units = 2 x 45 minutes)
-              
-              \nIf this limit of absence is exceeded, the Centre for Studies will send an email to notify you of your examination exclusion.
+        \n(One absent time = 2 teaching units = 2 x 45 minutes)
 
-              \nIt is not necessary to excuse absences. However, do make sure to keep medical certificates and other documentation justifying your absences until the end of the semester.
-              \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
+        \nIf this limit of absence is exceeded, the Centre for Studies will send an email to notify you of your examination exclusion.
 
-  utter_doctor_info: 
-    - text: "While it's not mandatory to excuse absences, it's advisable to retain medical certificates or any supporting documentation for your records until the end of the semester.
-              \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
-    - text: "Excusing absences is not a strict requirement, but it's recommended to maintain medical certificates and other supporting documents until the conclusion of the semester.
-              \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
-    - text: "The policy doesn't mandate excusing absences, but it's a good idea to hold onto medical certificates or any relevant documentation until the semester concludes.
-              \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
-    - text: "While excusing absences is optional, we encourage you to retain medical certificates and other justifying documentation for your own records until the end of the semester.
-              \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
-    - text: "The policy doesn't enforce excusing absences, but it's recommended to retain medical certificates and other justification documents until the completion of the semester.
-              \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
+        \nIt is not necessary to excuse absences. However, do make sure to keep medical certificates and other documentation justifying your absences until the end of the semester.
+        \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
 
-  utter_all_information: 
-    - text: "Absolutely! You can find comprehensive information about the [THD Language center](https://www.th-deg.de/language-and-electives-centre#info) on the official website. Explore details about language courses, elective options, schedules, and more."  
+  utter_doctor_info:
+    - text:
+        "While it's not mandatory to excuse absences, it's advisable to retain medical certificates or any supporting documentation for your records until the end of the semester.
+        \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
+    - text:
+        "Excusing absences is not a strict requirement, but it's recommended to maintain medical certificates and other supporting documents until the conclusion of the semester.
+        \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
+    - text:
+        "The policy doesn't mandate excusing absences, but it's a good idea to hold onto medical certificates or any relevant documentation until the semester concludes.
+        \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
+    - text:
+        "While excusing absences is optional, we encourage you to retain medical certificates and other justifying documentation for your own records until the end of the semester.
+        \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
+    - text:
+        "The policy doesn't enforce excusing absences, but it's recommended to retain medical certificates and other justification documents until the completion of the semester.
+        \n For more information visit [THD Language center](https://www.th-deg.de/language-and-electives-centre#info)"
+
+  utter_all_information:
+    - text: "Absolutely! You can find comprehensive information about the [THD Language center](https://www.th-deg.de/language-and-electives-centre#info) on the official website. Explore details about language courses, elective options, schedules, and more."
     - text: "Sure thing! Dive into a wealth of information about the [THD Language center](https://www.th-deg.de/language-and-electives-centre#info) on the official website. Discover course offerings, elective opportunities, and everything you need to know."
     - text: "Certainly! For a complete overview of the [THD Language center](https://www.th-deg.de/language-and-electives-centre#info), visit the official website. Uncover details about language courses, electives, and additional resources."
     - text: "Absolutely! The [THD Language center](https://www.th-deg.de/language-and-electives-centre#info) has a wealth of information waiting for you. Head over to the official website to explore course details, elective options, and more."
@@ -175,8 +193,8 @@ responses:
     - text: "Absolutely! The [THD Language center](https://www.th-deg.de/language-and-electives-centre#info) offers a plethora of information. Navigate to the official website for details on language courses, elective options, and additional resources."
 
   utter_differences:
-      - text: |
-          An elective, or AWP subject (Allgemeinwissenschaftliches Wahlpflichtfach), or a compulsory language course are subjects specified in your study and examination regulations. Voluntary subjects are taken purely on a voluntary basis without accreditation of any ECTS credits.
+    - text: |
+        An elective, or AWP subject (Allgemeinwissenschaftliches Wahlpflichtfach), or a compulsory language course are subjects specified in your study and examination regulations. Voluntary subjects are taken purely on a voluntary basis without accreditation of any ECTS credits.
 
   utter_choose_language_as_awp:
     - text: "Yes, it is possible to choose a language course as an AWP subject. It may even be a requirement in some degree programs."
@@ -227,7 +245,7 @@ responses:
     - text: Check your email. It should be an email from julia.vollbrecht@th-deg.de. Inside this email you will be able to find instructions of registration. Good luck!
 
   utter_which_exam:
-    - text: Which one exam do you like do pass? Say me its name. 
+    - text: Which one exam do you like do pass? Say me its name.
 
   utter_attend_several:
     - text: No, this is unfortunately not possible.
@@ -239,6 +257,8 @@ responses:
     - text: "The policy does not allow attending several electives simultaneously."
     - text: "You can only enroll in one elective or AWP program at a time."
 
+  utter_default_fallback:
+    - text: "I'm sorry, I didn't understand that. Can you please provide more information?"
 
 actions:
   - trigger_test_responce
@@ -246,7 +266,5 @@ actions:
   - remember_mn
   - return_faq
   - remember_level_language
+  - exam_reg_procedure
 
-
-utter_default_fallback:
-  - text: "I'm sorry, I didn't understand that. Can you please provide more information?"

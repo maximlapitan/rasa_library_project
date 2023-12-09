@@ -180,3 +180,34 @@ class ActionDefaultFallback(Action):
     ) -> List[Dict[Text, Any]]:
         dispatcher.utter_template("utter_default_fallback", tracker)
         return []
+    
+class ActionExamRegistration(Action):
+    def name(self) -> Text:
+        return "exam_reg_procedure"
+
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        exam = tracker.get_slot("german_exam")
+        
+        url = f'http://127.0.0.1:3000/exams/{exam}'
+        print(url)
+        response = requests.get(url)
+        print(type(response))
+        # Check if the request was successful (status code 200)
+        if response.status_code == 200:
+            # Print the response content
+            message = f"You selected {exam}\n"
+            message += f'You can find additional information at {response.json()[0]["link"]}\n'
+            message += f'Note, that {response.json()[0]["Notes"]}\n'
+            
+            print(response.json())
+        else:
+            # Print an error message if the request was not successful
+            print(f"Error: {response.status_code}")
+            message = f"Exam {exam} not found in our exam database"
+        
+        dispatcher.utter_message(text=message)
+        
+        return []
+    

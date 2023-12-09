@@ -157,6 +157,16 @@ nlu:
     - my level is [A1](language_level)
     - level is [A1](language_level)
     - I have [A1](language_level)
+    - [I feel myself confident]{"entity": "language_level", "value": "B1"}
+    - [I am just a beginner]{"entity": "language_level", "value": "A1"}
+    - [My language skills are at an intermediate level]{"entity": "language_level", "value": "B2"}
+    - [I consider myself advanced in the language]{"entity": "language_level", "value": "C1"}
+    - [I'm at a basic language level]{"entity": "language_level", "value": "A2"}
+    - [My proficiency is at an expert level]{"entity": "language_level", "value": "C2"}
+    - [I have intermediate language skills]{"entity": "language_level", "value": "B2"}
+    - [I'm fluent in the language]{"entity": "language_level", "value": "C1"}
+    - [I'm at an advanced language level]{"entity": "language_level", "value": "C1"}
+    - [I would say I'm at a beginner level]{"entity": "language_level", "value": "A1"} 
 
 - intent: ask_register_procedure
   examples: |
@@ -170,6 +180,7 @@ nlu:
     - What are attandance rules
     - What is going to happen
     - What are the penalties for missing classes, and how strict is the attendance policy?
+    - What happens if I miss a class? Are there penalties?
 
 - intent: ask_doctor
   examples: |
@@ -314,5 +325,24 @@ nlu:
     - Could you assist me in choosing and registering for a German language exam?
     - I'm considering a German exam. How can I proceed with the registration?
     - What are the steps involved in registering for a German language proficiency test?
+    - I'm thinking of taking a German proficiency exam. Where can I get information about it?
+    - I want to take a German proficiency exam. What are my options?
 
 
+- intent: say_german_exam
+  examples: |
+    - i want to register for [telc](german_exam)
+    - i would like to take part in [goethe](german_exam)
+    - [dsh](german_exam)
+    - tell me how to register for [testdaf](german_exam)
+    - i want to register for [goethe](german_exam) exam
+    - I want to register for the [telc](german_exam) exam.
+    - Can you guide me on participating in the [goethe](german_exam) exam?
+    - I'm interested in taking the [dsh](german_exam) exam.
+    - Tell me the process of registering for the [testdaf](german_exam) exam.
+    - I would like to register for the [goethe](german_exam) exam.
+    - What's the procedure for signing up for the [telc](german_exam) exam?
+    - I'm considering the [dsh](german_exam) exam. How can I proceed with registration?
+    - How do I enroll for the [goethe](german_exam) exam?
+    - Could you provide information on registering for the [testdaf](german_exam) exam?
+    - I want to participate in the [telc](german_exam) language exam.

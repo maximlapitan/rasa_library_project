@@ -65,6 +65,21 @@ def give_info_by_level(ll_value):
     conn.close()
     return result
 
+@app.get("/exams/<exam>")
+def give_info_by_exam(exam):
+    conn = sqlite3.connect(file_location)
+    cursor = conn.cursor()
+    columns = ["name","link","Notes"]
+    cursor.execute(
+        f'select {",".join(columns)} from side_exam where lower(name)="{exam}";')
+    conn.commit()
+    column_names = [column for column in get_column_names(
+        "side_exam") if column in columns]
+    electives = cursor.fetchall()
+    result = [dict(zip(column_names, elective)) for elective in electives]
+    print(electives)
+    conn.close()
+    return result
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=3000, debug=True)
