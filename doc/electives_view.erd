@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="electives_view.erd">
+	<entities>
+		<data-source id="sqlite_jdbc-18c50546be7-7bc82bac43d02f94">
+			<entity id="1" name="course_prerequisite" fq-name="course_prerequisite" order="0" border-width="3" font="Segoe UI:9:0" x="396" y="317"/>
+			<entity id="2" name="courses" fq-name="courses" order="1" font="Segoe UI:9:0" x="739" y="299"/>
+			<entity id="3" name="courses_status" fq-name="courses_status" order="2" font="Segoe UI:9:0" x="396" y="653"/>
+			<entity id="4" name="electives" fq-name="electives" order="3" font="Segoe UI:9:0" x="40" y="782"/>
+			<entity id="5" name="faculty" fq-name="faculty" order="4" font="Segoe UI:9:0" x="396" y="40"/>
+			<entity id="6" name="program" fq-name="program" order="5" font="Segoe UI:9:0" x="40" y="90"/>
+			<entity id="7" name="program_type" fq-name="program_type" order="6" font="Segoe UI:9:0" x="396" y="188"/>
+			<entity id="8" name="side_exam" fq-name="side_exam" order="7" font="Segoe UI:9:0" x="396" y="782"/>
+			<entity id="9" name="student" fq-name="student" order="8" font="Segoe UI:9:0" x="739" y="504"/>
+			<entity id="10" name="student_course" fq-name="student_course" order="9" font="Segoe UI:9:0" x="396" y="486"/>
+			<entity id="11" name="student_course_status" fq-name="student_course_status" order="10" font="Segoe UI:9:0" x="40" y="560"/>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="FK_course_prerequisite_courses" fq-name="course_prerequisite.FK_course_prerequisite_courses" type="fk" pk-ref="2" fk-ref="1"/>
+		<relation name="FK_course_prerequisite_courses_2" fq-name="course_prerequisite.FK_course_prerequisite_courses_2" type="fk" pk-ref="2" fk-ref="1"/>
+		<relation name="FK_student_course_courses" fq-name="student_course.FK_student_course_courses" type="fk" pk-ref="2" fk-ref="10"/>
+		<relation name="FK_student_course_status_courses_status" fq-name="student_course_status.FK_student_course_status_courses_status" type="fk" pk-ref="3" fk-ref="11"/>
+		<relation name="FK_program_faculty" fq-name="program.FK_program_faculty" type="fk" pk-ref="5" fk-ref="6"/>
+		<relation name="FK_program_program_type_2" fq-name="program.FK_program_program_type_2" type="fk" pk-ref="7" fk-ref="6"/>
+		<relation name="FK_student_course_student_2" fq-name="student_course.FK_student_course_student_2" type="fk" pk-ref="9" fk-ref="10"/>
+		<relation name="FK_student_course_status_student_course_2" fq-name="student_course_status.FK_student_course_status_student_course_2" type="fk" pk-ref="10" fk-ref="11"/>
+	</relations>
+</diagram>

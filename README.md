@@ -90,3 +90,6 @@ Project consists of 3 parts:
 
 ### Database
 
+Database has the following structure:
+
+![](doc/electives_view.png)
