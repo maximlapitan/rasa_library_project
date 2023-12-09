@@ -26,13 +26,12 @@ nlu:
     - level of knowledge of language
     - german level
 
-- synonym: exam_name
+- synonym: german_exam
   examples: |
     - german exam
     - exam
-    - level
-    - level of knowledge of language
-    - german level
+    - german language certification
+    - examination
 
 - intent: greet
   examples: |
@@ -174,6 +173,15 @@ nlu:
     - How can I start attending this course?
     - What is procedure of registration on this course?
     - What is procedure of registration on this elective?
+    - how to register
+    - Can you guide me through the registration process for this elective?
+    - What are the steps to register for this course?
+    - I'm interested in attending. How can I sign up for this elective?
+    - Could you explain the process of registration for this course?
+    - How do I enroll in this elective?
+    - Can you provide information on how to register for this course?
+    - I'm unsure about the registration. How can I get started?
+    - Is there a specific procedure for enrolling in this elective?
 
 - intent: ask_policy
   examples: |
@@ -346,6 +354,8 @@ nlu:
     - How do I enroll for the [goethe](german_exam) exam?
     - Could you provide information on registering for the [testdaf](german_exam) exam?
     - I want to participate in the [telc](german_exam) language exam.
+    - I'd like to take [Goethe-Zertifikat]{"entity": "german_exam", "value": "goethe"}
+    - [Goethe-Zertifikat]{"entity": "german_exam", "value": "goethe"}
 
 - intent: self_study_german
   examples: |

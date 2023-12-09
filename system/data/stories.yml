@@ -5,6 +5,8 @@ stories:
     steps:
       - intent: trigger_test
       - action: trigger_test_responce
+      - intent: goodbye
+      - action: utter_goodbye
 
   - story: identify student
     steps:
@@ -29,7 +31,7 @@ stories:
       - intent: say_german_exam
       - action: exam_reg_procedure
 
-  - story: attandancy policy
+  - story: attendancy policy
     steps:
       - intent: ask_policy
       - action: utter_compulsory_attedance

@@ -129,7 +129,8 @@ responses:
 
   utter_goodbye:
     - text: "Bye"
-
+    - text: "Thank you for cooperation"
+    - text: "See you later"
   utter_iamabot:
     - text: "I am a bot, powered by Rasa."
 
