@@ -17,6 +17,8 @@ This Rasa chatbot can help international students to learn German language. One 
 
 You can get more information about chatbot's scope in [respective wiki page](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/user-journeys)
 
+Internal structure is covered in [here](#architecture)
+
 ## Installation
 
 Installation should be proceeded in python venv. Steps are done in linux OS, but can be adapted to windows as well.
@@ -28,6 +30,8 @@ python3.10 -m venv sas-venv
 source sas-venv/bin/activate
 pip install -r requirements.txt
 ```
+
+Eventually you may need [sqlite3](https://www.sqlite.org/index.html) installed, although it comes out of the box in linux.
 
 ## Basic usage
 Usage consists of 4 parts (You may need several terminal windows for that):
@@ -64,11 +68,25 @@ Let's do it step by step.
 
 1. After model is trained, we can start rasa shell and input something in it. For this run **(Window 1)**
 
-```bash
-rasa shell
-```
+    ```bash
+    rasa shell
+    ```
 
 Your setup may look like this
 
 ![](doc/3_windows.png)
+
+## Architecture
+
+Project consists of 3 parts: 
+
+1. **Rasa Model**: yaml files describing domain and actions file to communicate with webserver
+1. **Web Server** (built using rest-api approach) to facilitate responces from rasa model
+1. **Database**, to which server can connect and execute select commands.
+
+### Rasa model
+
+### Web Server
+
+### Database
 
