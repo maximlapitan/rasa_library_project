@@ -112,3 +112,9 @@ stories:
     steps:
       - intent: intent_attend_several
       - action: utter_attend_several
+
+
+  - story: learn german by yourslef
+    steps: 
+      - intent: self_study_german
+      - action: utter_self_study_german

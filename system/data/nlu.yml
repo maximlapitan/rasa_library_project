@@ -346,3 +346,16 @@ nlu:
     - How do I enroll for the [goethe](german_exam) exam?
     - Could you provide information on registering for the [testdaf](german_exam) exam?
     - I want to participate in the [telc](german_exam) language exam.
+
+- intent: self_study_german
+  examples: |
+    - How can I improve my German language skills?
+    - I want to get better at German. How can I do this at home?
+    - What are some effective ways to self-study German?
+    - Can you recommend resources for self-study in German?
+    - I'm looking for tips on self-studying German. Any advice?
+    - How do I enhance my German language proficiency through self-study?
+    - Are there any online courses for self-learning German?
+    - What are the best methods for self-studying German grammar?
+    - I'm interested in self-study options for German. Where should I start?
+    - Can you suggest books or apps for self-improvement in German?
