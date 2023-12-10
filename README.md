@@ -104,7 +104,13 @@ Part of the story
 
 Will return *Success, the server is up and running, rasa is requesting as expected* if everything is fine. Else it will print "Error" and error message
 
-### return_mn
+Example:
+
+> **Your input** -> test              
+
+> Success, the server is up and running, rasa is requesting as expected
+
+### remember_mn
 
 Returns your matriculation number, GPA and name with surname (if exists), otherwise you will get some sort of error. Part of the story
 
@@ -117,17 +123,136 @@ Returns your matriculation number, GPA and name with surname (if exists), otherw
         - action: remember_mn
 ```
 
-It also uses several slots 
+It also uses several slots (`student_mn`) is used to get information from database and others are "remembered" after request is completed.
 
-### remember_mn
+```yaml
+slots:
+    student_mn:
+        type: text
+        mappings:
+        - type: from_entity
+            entity: matriculation_number
+    name:
+        type: text
+        mappings:
+        - type: custom
+            action: remember_mn
+
+    surname:
+        type: text
+        mappings:
+        - type: custom
+            action: remember_mn
+
+    gpa:
+        type: float
+        mappings:
+        - type: custom
+            action: remember_mn
+```
+
+Example: 
+
+> **Your input** ->  hi
+
+> Hi, can I have you id number please?
+
+> **Your input** ->  22200849
+
+> Hello Maxim Zotov, your id is 22200849 and gpa is 1
 
 ### return_faq
 
+when user wants to get access to all FAQ at once, he can request it.
+
+```yaml
+- story: get faq
+    steps:
+        - intent: get_faq
+        - action: return_faq
+```
+`return_faq` will contact server to get link to most recent faq
+
+Example: 
+
+> **Your input** -> faq
+
+> https://www.th-deg.de/Studierende/AWP-Sprachkurse/FAQ_EN.pdf
+
 ### remember_level_language
+
+Part of story
+
+```yaml
+- story: identify student's level of language
+    steps:
+      - intent: want_learn_german
+      - action: utter_ask_for_level_language
+      - intent: say_level_language
+      - action: remember_level_language
+      - intent: ask_register_procedure
+      - action: utter_register_procedure
+```
+When user wants to learn german, user gets asked about his level and then gets possible courses to attend. After that one can request registration instructions.
+
+Example:
+
+> **Your input** ->  I want to start lerning german
+
+> Can I know your level of knowledge of german language?
+
+> **Your input** ->  i have a1
+
+> You can choose from several options:
+>
+> German A1/ part 1 + 2
+>
+> German A1/ part 3 + 4
+>
+> German A1/ Grammar and Vocabulary
+
+> **Your input** ->  how to register
+
+> Check your email. It should be an email from julia.vollbrecht@th-deg.de. Inside this email you will be able to find instructions of registration. Good luck!
 
 ### exam_reg_procedure
 
+Part of the story
+
+```yaml
+- story: german exam registration
+    steps:
+      - intent: want_german_exam
+      - action: utter_which_exam
+      - intent: say_german_exam
+      - action: exam_reg_procedure
+```
+
+When one wants to pass german exam, system asks about type of the exam and then returns options how to register.
+
+Example: 
+
+> **Your input** ->  How do I register for a German exam?
+
+> Which one exam do you like do pass? Say me its name.
+
+> **Your input** ->  goethe
+
+> You selected goethe
+>
+> You can find additional information at https://www.goethe.de/de/spr/kup/prf/prf.html
+>
+> Note, that self registration without participation of DIT university
+
 ### action_default_fallback
+
+This was added primarily to stop model from responding to empty promts
+
+Example: 
+
+> **Your input** -> 
+
+> I'm sorry, I didn't understand that. Can you please provide more information?
 
 ## Architecture
 
