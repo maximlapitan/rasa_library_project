@@ -89,7 +89,7 @@ class ActionRememberMN(Action):
                     dispatcher.utter_message(text=message)
                     return []
             except requests.exceptions.RequestException as e:
-                dispatcher.utter_message(text=f"""Error occured. Althought you number {mn_value} was recognized,
+                dispatcher.utter_message(text=f"""Error occured. Althought your number {mn_value} was recognized,
                                                     rasa encountered problem with the server
                                                     More: {e}""")
                 return []
@@ -140,26 +140,31 @@ class ActionRememberLL(Action):
         ll_value = tracker.get_slot("language_lvl")
 
         if ll_value:
-            
-            url = f'http://127.0.0.1:3000/languages/levels/{ll_value}'
-            print(url)
-            response = requests.get(url)
-            print(type(response.json()))
-            # Check if the request was successful (status code 200)
-            if response.status_code == 200:
-                # Print the response content
-                print(response.json())
-            else:
-                # Print an error message if the request was not successful
-                print(f"Error: {response.status_code}")
-            
-            message = f"You can choose from several options:\n" + "\n".join([elective["elective_name"] for elective in response.json()])
-            
-            # select * from electives where lower(elective_name) like "%a1%";
-            # message = f"Okay, your german level is {ll_value}"
-            
-            dispatcher.utter_message(text=message)
-            
+            try:
+                url = f'http://127.0.0.1:3000/languages/levels/{ll_value}'
+                print(url)
+                response = requests.get(url)
+                print(type(response.json()))
+                # Check if the request was successful (status code 200)
+                if response.status_code == 200:
+                    # Print the response content
+                    print(response.json())
+                else:
+                    # Print an error message if the request was not successful
+                    print(f"Error: {response.status_code}")
+                
+                message = f"You can choose from several options:\n" + "\n".join([elective["elective_name"] for elective in response.json()])
+                
+                # select * from electives where lower(elective_name) like "%a1%";
+                # message = f"Okay, your german level is {ll_value}"
+                
+                dispatcher.utter_message(text=message)
+                return []
+            except requests.exceptions.RequestException as e:
+                dispatcher.utter_message(text=f"""Error occured. Althought your language level {ll_value} was recognized,
+                                                    rasa encountered problem with the server
+                                                    More: {e}""")
+                return []
         return []
     
 class ActionDefaultFallback(Action):
