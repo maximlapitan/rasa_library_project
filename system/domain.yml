@@ -42,22 +42,6 @@ slots:
     - type: from_entity
       entity: german_exam
 
-  # name:
-  #   type: text
-  #   mappings:
-  #   - type: custom
-  #     action: remember_mn
-  # surname:
-  #   type: text
-  #   mappings:
-  #   - type: custom
-  #     action: remember_mn
-  # gpa:
-  #   type: float
-  #   mappings:
-  #   - type: custom
-  #     action: remember_mn
-
 intents:
   - greet
   - goodbye
@@ -291,9 +275,9 @@ responses:
 
 actions:
   - trigger_test_responce
-  - return_mn
   - remember_mn
   - return_faq
   - remember_level_language
   - exam_reg_procedure
+  - action_default_fallback
 
