@@ -1,5 +1,24 @@
 # Rasa Chatbot "German Language Electives Assistant - Schoschka"
 
+- [Rasa Chatbot "German Language Electives Assistant - Schoschka"](#rasa-chatbot-german-language-electives-assistant---schoschka)
+  - [Authors](#authors)
+  - [Project description](#project-description)
+  - [Installation](#installation)
+  - [Basic usage](#basic-usage)
+  - [Implementation of the Requests](#implementation-of-the-requests)
+    - [trigger\_test\_responce](#trigger_test_responce)
+    - [remember\_mn](#remember_mn)
+    - [return\_faq](#return_faq)
+    - [remember\_level\_language](#remember_level_language)
+    - [exam\_reg\_procedure](#exam_reg_procedure)
+    - [action\_default\_fallback](#action_default_fallback)
+  - [Architecture](#architecture)
+    - [Rasa model](#rasa-model)
+    - [Web Server](#web-server)
+    - [Database](#database)
+  - [Work done](#work-done)
+
+
 ## Authors
 
 Maxim Lapitan 22200839
@@ -18,6 +37,10 @@ This Rasa chatbot can help international students to learn German language. One 
 You can get more information about chatbot's scope in [respective wiki page](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/user-journeys)
 
 Internal structure is covered in [here](#architecture)
+
+See also [usage](#basic-usage) and [implementation of the requests](#implementation-of-the-requests)
+
+
 
 ## Installation
 
