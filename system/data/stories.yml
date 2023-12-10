@@ -20,12 +20,12 @@ stories:
       - intent: want_learn_german
       - action: utter_ask_for_level_language
       - intent: say_level_language
-      - action: remember_level_language    
+      - action: remember_level_language
       - intent: ask_register_procedure
       - action: utter_register_procedure
 
   - story: german exam registration
-    steps: 
+    steps:
       - intent: want_german_exam
       - action: utter_which_exam
       - intent: say_german_exam
@@ -115,8 +115,7 @@ stories:
       - intent: intent_attend_several
       - action: utter_attend_several
 
-
   - story: learn german by yourslef
-    steps: 
+    steps:
       - intent: self_study_german
       - action: utter_self_study_german

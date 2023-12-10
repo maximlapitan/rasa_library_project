@@ -39,8 +39,8 @@ slots:
   german_exam:
     type: text
     mappings:
-    - type: from_entity
-      entity: german_exam
+      - type: from_entity
+        entity: german_exam
 
 intents:
   - greet
@@ -247,29 +247,28 @@ responses:
     - text: "I'm sorry, I didn't understand that. Can you please provide more information?"
 
   utter_self_study_german:
-    - text:
-        "Absolutely! There are several effective ways to self-study German:
+    - text: "Absolutely! There are several effective ways to self-study German:
 
         \n 1. **DW Learn German:**
-           Deutsche Welle offers excellent resources for learning German, including online courses, articles, and interactive exercises. Check out their platform [here](https://learngerman.dw.com/).
+        Deutsche Welle offers excellent resources for learning German, including online courses, articles, and interactive exercises. Check out their platform [here](https://learngerman.dw.com/).
 
         \n 2. **German Podcasts:**
-           Listening to German podcasts is a great way to improve your listening skills. Some popular ones include:
-           - 'Coffee Break German'
-           - 'Slow German'
-           - 'The Authentic German Learning Podcast'
+        Listening to German podcasts is a great way to improve your listening skills. Some popular ones include:
+        - 'Coffee Break German'
+        - 'Slow German'
+        - 'The Authentic German Learning Podcast'
 
         \n 3. **Easy German YouTube Channel:**
-           The Easy German YouTube channel provides entertaining and educational content with real-life street interviews. You can find it [here](https://www.youtube.com/c/easygerman).
+        The Easy German YouTube channel provides entertaining and educational content with real-life street interviews. You can find it [here](https://www.youtube.com/c/easygerman).
 
         \n 4. **Language Learning Apps:**
-           Explore language learning apps like Duolingo, Babbel, or Memrise. These apps offer interactive lessons and exercises to practice German.
+        Explore language learning apps like Duolingo, Babbel, or Memrise. These apps offer interactive lessons and exercises to practice German.
 
         \n 5. **German Language Books:**
-           Consider using textbooks like 'Studio [21](https://www.cornelsen.de/studio-21-22202.html)' or 'Menschen [A1](https://www.hueber.de/menschen/)' for structured learning.
+        Consider using textbooks like 'Studio [21](https://www.cornelsen.de/studio-21-22202.html)' or 'Menschen [A1](https://www.hueber.de/menschen/)' for structured learning.
 
         \n 6. **Flashcards:**
-            You may try using flashcard applications like quizlet and anki to memorize words and enrich your vocabulary.
+        You may try using flashcard applications like quizlet and anki to memorize words and enrich your vocabulary.
 
         \n Remember to practice regularly, immerse yourself in the language, and enjoy the learning process!"
 
@@ -280,4 +279,3 @@ actions:
   - remember_level_language
   - exam_reg_procedure
   - action_default_fallback
-

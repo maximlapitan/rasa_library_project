@@ -1,371 +1,368 @@
 version: "3.1"
 
 nlu:
+  - regex: matriculation_number
+    examples: |
+      - \d{8}
 
-- regex: matriculation_number
-  examples: |
-    - \d{8}
-    
-- regex: language_level
-  examples: |
-    - (A1|A2|B1|B2|C1|C2)
+  - regex: language_level
+    examples: |
+      - (A1|A2|B1|B2|C1|C2)
 
-- synonym: matriculation_number
-  examples: |
-    - id
-    - MN
-    - student id
-    - number
-    - student number
+  - synonym: matriculation_number
+    examples: |
+      - id
+      - MN
+      - student id
+      - number
+      - student number
 
-- synonym: language_level
-  examples: |
-    - profficiency level
-    - language level
-    - level
-    - level of knowledge of language
-    - german level
+  - synonym: language_level
+    examples: |
+      - profficiency level
+      - language level
+      - level
+      - level of knowledge of language
+      - german level
 
-- synonym: german_exam
-  examples: |
-    - german exam
-    - exam
-    - german language certification
-    - examination
+  - synonym: german_exam
+    examples: |
+      - german exam
+      - exam
+      - german language certification
+      - examination
 
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
 
-- intent: goodbye
-  examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
 
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+  - intent: affirm
+    examples: |
+      - yes
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
 
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+  - intent: deny
+    examples: |
+      - no
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not really
 
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+  - intent: mood_great
+    examples: |
+      - perfect
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
 
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+  - intent: mood_unhappy
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
 
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
-- intent: trigger_test
-  examples: |
-    - test
-    - run test ping
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?
+  - intent: trigger_test
+    examples: |
+      - test
+      - run test ping
 
-- intent: out_of_scope
-  examples: |
-    - I want to order food
-    - What is 2 + 2?
-    - Who's the US President?
-    - Any interesting events happening on campus this week?
-    - The AI in Robotics lecture sounds fascinating. Where is it happening?
-    - Yes, what's the topic of the lecture?
-    - How to get up from bed?
-    - Are there any events or workshops this month?
-    - Tell me more about the cybersecurity workshop.
+  - intent: out_of_scope
+    examples: |
+      - I want to order food
+      - What is 2 + 2?
+      - Who's the US President?
+      - Any interesting events happening on campus this week?
+      - The AI in Robotics lecture sounds fascinating. Where is it happening?
+      - Yes, what's the topic of the lecture?
+      - How to get up from bed?
+      - Are there any events or workshops this month?
+      - Tell me more about the cybersecurity workshop.
 
-- intent: say_matriculation
-  examples: |
-    - Hi, my id is [123456789](matriculation_number)
-    - Yes, it is [123456789](matriculation_number)
-    - my number is [123456789](matriculation_number)
-    - [123456789](matriculation_number)
-    - sure, my matriculation number is [123456789](matriculation_number)
-    - my matriculation_number: [123456789](matriculation_number) 
+  - intent: say_matriculation
+    examples: |
+      - Hi, my id is [123456789](matriculation_number)
+      - Yes, it is [123456789](matriculation_number)
+      - my number is [123456789](matriculation_number)
+      - [123456789](matriculation_number)
+      - sure, my matriculation number is [123456789](matriculation_number)
+      - my matriculation_number: [123456789](matriculation_number)
 
-- intent: say_level_language
-  examples: |
-    - My level of german is [A1](language_level)    
-    - My level of knowledge of german is [A1](language_level)
-    - My level of profficiency in german is [A1](language_level)
-    - [B2](language_level)
-    - my level is [A1](language_level)
-    - level is [A1](language_level)
-    - I have [A1](language_level)
-    - [I feel myself confident]{"entity": "language_level", "value": "B1"}
-    - [I am just a beginner]{"entity": "language_level", "value": "A1"}
-    - [My language skills are at an intermediate level]{"entity": "language_level", "value": "B2"}
-    - [I consider myself advanced in the language]{"entity": "language_level", "value": "C1"}
-    - [I'm at a basic language level]{"entity": "language_level", "value": "A2"}
-    - [My proficiency is at an expert level]{"entity": "language_level", "value": "C2"}
-    - [I have intermediate language skills]{"entity": "language_level", "value": "B2"}
-    - [I'm fluent in the language]{"entity": "language_level", "value": "C1"}
-    - [I'm at an advanced language level]{"entity": "language_level", "value": "C1"}
-    - [I would say I'm at a beginner level]{"entity": "language_level", "value": "A1"} 
+  - intent: say_level_language
+    examples: |
+      - My level of german is [A1](language_level)    
+      - My level of knowledge of german is [A1](language_level)
+      - My level of profficiency in german is [A1](language_level)
+      - [B2](language_level)
+      - my level is [A1](language_level)
+      - level is [A1](language_level)
+      - I have [A1](language_level)
+      - [I feel myself confident]{"entity": "language_level", "value": "B1"}
+      - [I am just a beginner]{"entity": "language_level", "value": "A1"}
+      - [My language skills are at an intermediate level]{"entity": "language_level", "value": "B2"}
+      - [I consider myself advanced in the language]{"entity": "language_level", "value": "C1"}
+      - [I'm at a basic language level]{"entity": "language_level", "value": "A2"}
+      - [My proficiency is at an expert level]{"entity": "language_level", "value": "C2"}
+      - [I have intermediate language skills]{"entity": "language_level", "value": "B2"}
+      - [I'm fluent in the language]{"entity": "language_level", "value": "C1"}
+      - [I'm at an advanced language level]{"entity": "language_level", "value": "C1"}
+      - [I would say I'm at a beginner level]{"entity": "language_level", "value": "A1"}
 
-- intent: ask_register_procedure
-  examples: |
-    - But how can I register on this course?
-    - How can I start attending this course?
-    - What is procedure of registration on this course?
-    - What is procedure of registration on this elective?
-    - how to register
-    - Can you guide me through the registration process for this elective?
-    - What are the steps to register for this course?
-    - I'm interested in attending. How can I sign up for this elective?
-    - Could you explain the process of registration for this course?
-    - How do I enroll in this elective?
-    - Can you provide information on how to register for this course?
-    - I'm unsure about the registration. How can I get started?
-    - Is there a specific procedure for enrolling in this elective?
+  - intent: ask_register_procedure
+    examples: |
+      - But how can I register on this course?
+      - How can I start attending this course?
+      - What is procedure of registration on this course?
+      - What is procedure of registration on this elective?
+      - how to register
+      - Can you guide me through the registration process for this elective?
+      - What are the steps to register for this course?
+      - I'm interested in attending. How can I sign up for this elective?
+      - Could you explain the process of registration for this course?
+      - How do I enroll in this elective?
+      - Can you provide information on how to register for this course?
+      - I'm unsure about the registration. How can I get started?
+      - Is there a specific procedure for enrolling in this elective?
 
-- intent: ask_policy
-  examples: |
-    - What are attandance rules
-    - What is going to happen
-    - What are the penalties for missing classes, and how strict is the attendance policy?
-    - What happens if I miss a class? Are there penalties?
+  - intent: ask_policy
+    examples: |
+      - What are attandance rules
+      - What is going to happen
+      - What are the penalties for missing classes, and how strict is the attendance policy?
+      - What happens if I miss a class? Are there penalties?
 
-- intent: ask_doctor
-  examples: |
-    - will doctor's certificate work?
-    - what if i provide doctor's certificate?
-    - are there legal options to be absent?
-    - Can I submit a doctor's certificate for my absence?
-    - If I have a doctor's certificate, will it be accepted?
-    - What is the policy regarding doctor's certificates?
-    - Are there any legal options for being absent if I have a doctor's note?
-    - Is a medical certificate considered a valid reason for absence?
-    - What documentation is required for a medical leave?
-    - If I provide a doctor's note, will it be considered as a valid excuse?
-    - How does the company handle absences due to medical reasons?
-    - Can I use a doctor's certificate as an excuse for missing work?
-    - What are the accepted reasons for being absent, especially related to medical issues?
+  - intent: ask_doctor
+    examples: |
+      - will doctor's certificate work?
+      - what if i provide doctor's certificate?
+      - are there legal options to be absent?
+      - Can I submit a doctor's certificate for my absence?
+      - If I have a doctor's certificate, will it be accepted?
+      - What is the policy regarding doctor's certificates?
+      - Are there any legal options for being absent if I have a doctor's note?
+      - Is a medical certificate considered a valid reason for absence?
+      - What documentation is required for a medical leave?
+      - If I provide a doctor's note, will it be considered as a valid excuse?
+      - How does the company handle absences due to medical reasons?
+      - Can I use a doctor's certificate as an excuse for missing work?
+      - What are the accepted reasons for being absent, especially related to medical issues?
 
-- intent: more_information
-  examples: |
-    - Give me more information.
-    - I want to have more information.
-    - More details, please.
-    - Can you provide additional information?
-    - What else can you tell me about this?
-    - I need more details on this topic.
-    - Could you give me further information?
-    - Tell me more about it.
-    - I'm interested in learning more.
-    - Provide me with additional details.
-    - I'd like to know more.
-    - What other information do you have?
+  - intent: more_information
+    examples: |
+      - Give me more information.
+      - I want to have more information.
+      - More details, please.
+      - Can you provide additional information?
+      - What else can you tell me about this?
+      - I need more details on this topic.
+      - Could you give me further information?
+      - Tell me more about it.
+      - I'm interested in learning more.
+      - Provide me with additional details.
+      - I'd like to know more.
+      - What other information do you have?
 
-- intent: get_faq
-  examples: |
-    - faq
-    - give me list of frequent questions
-    - most asked questions
-    - frequently asked questions link
+  - intent: get_faq
+    examples: |
+      - faq
+      - give me list of frequent questions
+      - most asked questions
+      - frequently asked questions link
 
+  - intent: intent_differences
+    examples: |
+      - What are the differences between electives (AWP), compulsory language courses, and voluntary subjects?
+      - Explain the distinctions between electives, compulsory language courses, and voluntary subjects.
+      - Tell me about AWP subjects and compulsory language courses.
 
-- intent: intent_differences
-  examples: |
-    - What are the differences between electives (AWP), compulsory language courses, and voluntary subjects?
-    - Explain the distinctions between electives, compulsory language courses, and voluntary subjects.
-    - Tell me about AWP subjects and compulsory language courses.
+  - intent: intent_choose_language_as_awp
+    examples: |
+      - Can I choose a language course as an AWP subject?
+      - Is it possible to have a language course recognized as an AWP subject?
+      - How can I select a language course for AWP credit?
 
-- intent: intent_choose_language_as_awp
-  examples: |
-    - Can I choose a language course as an AWP subject?
-    - Is it possible to have a language course recognized as an AWP subject?
-    - How can I select a language course for AWP credit?
+  - intent: intent_recognize_intensive_language_course
+    examples: |
+      - Can an intensive language course during the semester break be recognized as an AWP subject or compulsory language course?
+      - How can I recognize an intensive language course taken during the semester break?
 
-- intent: intent_recognize_intensive_language_course
-  examples: |
-    - Can an intensive language course during the semester break be recognized as an AWP subject or compulsory language course?
-    - How can I recognize an intensive language course taken during the semester break?
+  - intent: intent_select_multiple_awp_or_language_courses
+    examples: |
+      - Can I select more than one AWP subject or compulsory language course for my next semester?
+      - Is it possible to choose multiple AWP subjects or language courses?
 
-- intent: intent_select_multiple_awp_or_language_courses
-  examples: |
-    - Can I select more than one AWP subject or compulsory language course for my next semester?
-    - Is it possible to choose multiple AWP subjects or language courses?
+  - intent: intent_prepone_or_postpone_course
+    examples: |
+      - Is it possible to prepone or postpone an AWP subject or compulsory language course?
+      - Can I change the timing of my AWP subject or language course due to a semester abroad?
 
-- intent: intent_prepone_or_postpone_course
-  examples: |
-    - Is it possible to prepone or postpone an AWP subject or compulsory language course?
-    - Can I change the timing of my AWP subject or language course due to a semester abroad?
+  - intent: intent_recognize_voluntary_subject
+    examples: |
+      - Can a voluntary subject attended in a previous semester be recognized as an AWP subject or compulsory language course?
+      - Is it possible to recognize a voluntary subject as an AWP subject?
 
-- intent: intent_recognize_voluntary_subject
-  examples: |
-    - Can a voluntary subject attended in a previous semester be recognized as an AWP subject or compulsory language course?
-    - Is it possible to recognize a voluntary subject as an AWP subject?
+  - intent: intent_pick_best_grade_subject
+    examples: |
+      - Can I take several subjects as AWP subjects/compulsory language courses and subsequently pick the subject with the best grade for my certificate?
+      - Is it possible to select multiple subjects and choose the best grade for my certificate?
 
-- intent: intent_pick_best_grade_subject
-  examples: |
-    - Can I take several subjects as AWP subjects/compulsory language courses and subsequently pick the subject with the best grade for my certificate?
-    - Is it possible to select multiple subjects and choose the best grade for my certificate?
+  - intent: intent_withdraw_from_course
+    examples: |
+      - Can I withdraw from a course during the semester if I don’t like it?
+      - Is it possible to deregister from a course if I change my mind?
 
-- intent: intent_withdraw_from_course
-  examples: |
-    - Can I withdraw from a course during the semester if I don’t like it?
-    - Is it possible to deregister from a course if I change my mind?
+  - intent: intent_switch_course_group
+    examples: |
+      - Can I switch to a different group if it is more suitable for my schedule?
+      - Is it possible to change my course group?
 
-- intent: intent_switch_course_group
-  examples: |
-    - Can I switch to a different group if it is more suitable for my schedule?
-    - Is it possible to change my course group?
+  - intent: intent_find_information
+    examples: |
+      - Where can I find important information about my lecture times, lecture postponements, general information, etc.?
+      - How can I get information about my courses?
 
-- intent: intent_find_information
-  examples: |
-    - Where can I find important information about my lecture times, lecture postponements, general information, etc.?
-    - How can I get information about my courses?
+  - intent: intent_fail_examination
+    examples: |
+      - What happens if I fail an examination?
+      - What are the consequences of failing an exam?
+      - Can I retake an exam if I fail?
 
-- intent: intent_fail_examination
-  examples: |
-    - What happens if I fail an examination?
-    - What are the consequences of failing an exam?
-    - Can I retake an exam if I fail?
+  - intent: intent_repeat_exam_in_case_of_failure
+    examples: |
+      - If I fail an exam, can I retake it in the next semester?
+      - What should I do if I fail an examination?
 
-- intent: intent_repeat_exam_in_case_of_failure
-  examples: |
-    - If I fail an exam, can I retake it in the next semester?
-    - What should I do if I fail an examination?
+  - intent: intent_attend_language_course_again
+    examples: |
+      - If I fail a language course, can I attend it again?
+      - What can I do if I fail a language course?
 
-- intent: intent_attend_language_course_again
-  examples: |
-    - If I fail a language course, can I attend it again?
-    - What can I do if I fail a language course?
+  - intent: intent_attend_several
+    examples: |
+      - Can I attend multiple electives at once?
+      - Is it possible to attend several German courses simultaneously?
+      - Can I enroll in two courses at the same time?
+      - Is attending more than one elective allowed?
+      - Am I allowed to take multiple language courses concurrently?
+      - What's the policy on attending several courses in a single semester?
+      - Is there a limit to the number of electives I can attend in one semester?
+      - Can I take several subjects as AWP subjects/compulsory language courses and subsequently pick the subject with the best grade for my certificate?
 
-- intent: intent_attend_several
-  examples: |
-    - Can I attend multiple electives at once?
-    - Is it possible to attend several German courses simultaneously?
-    - Can I enroll in two courses at the same time?
-    - Is attending more than one elective allowed?
-    - Am I allowed to take multiple language courses concurrently?
-    - What's the policy on attending several courses in a single semester?
-    - Is there a limit to the number of electives I can attend in one semester?
-    - Can I take several subjects as AWP subjects/compulsory language courses and subsequently pick the subject with the best grade for my certificate?
+  - intent: want_learn_german
+    examples: |
+      - I want to start lerning german
+      - What if I want to learn german?
+      - What's about study german with level?
 
-- intent: want_learn_german
-  examples: |
-    - I want to start lerning german
-    - What if I want to learn german?
-    - What's about study german with level?
+  - intent: fallback
+    examples: |
+      - fallback
+      - I don't understand
+      - Can you rephrase that?
 
-- intent: fallback
-  examples: |
-    - fallback
-    - I don't understand
-    - Can you rephrase that?
+  - intent: want_german_exam
+    examples: |
+      - I want to register for a German exam. I don't know which one to choose. Can you help me with this?
+      - How do I register for a German exam?
+      - Can you guide me through the registration process for a German exam?
+      - I'm interested in taking a German exam. What are the steps for registration?
+      - What steps do I need to follow to register for a German exam?
+      - Is there any assistance available for registering for a German exam?
+      - Tell me about the process of signing up for a German language exam.
+      - I'm unsure about the German exam options. Can you provide information on registration?
+      - Could you assist me in choosing and registering for a German language exam?
+      - I'm considering a German exam. How can I proceed with the registration?
+      - What are the steps involved in registering for a German language proficiency test?
+      - I'm thinking of taking a German proficiency exam. Where can I get information about it?
+      - I want to take a German proficiency exam. What are my options?
 
-- intent: want_german_exam
-  examples: |
-    - I want to register for a German exam. I don't know which one to choose. Can you help me with this?
-    - How do I register for a German exam?
-    - Can you guide me through the registration process for a German exam?
-    - I'm interested in taking a German exam. What are the steps for registration?
-    - What steps do I need to follow to register for a German exam?
-    - Is there any assistance available for registering for a German exam?
-    - Tell me about the process of signing up for a German language exam.
-    - I'm unsure about the German exam options. Can you provide information on registration?
-    - Could you assist me in choosing and registering for a German language exam?
-    - I'm considering a German exam. How can I proceed with the registration?
-    - What are the steps involved in registering for a German language proficiency test?
-    - I'm thinking of taking a German proficiency exam. Where can I get information about it?
-    - I want to take a German proficiency exam. What are my options?
+  - intent: say_german_exam
+    examples: |
+      - i want to register for [telc](german_exam)
+      - i would like to take part in [goethe](german_exam)
+      - [dsh](german_exam)
+      - tell me how to register for [testdaf](german_exam)
+      - i want to register for [goethe](german_exam) exam
+      - I want to register for the [telc](german_exam) exam.
+      - Can you guide me on participating in the [goethe](german_exam) exam?
+      - I'm interested in taking the [dsh](german_exam) exam.
+      - Tell me the process of registering for the [testdaf](german_exam) exam.
+      - I would like to register for the [goethe](german_exam) exam.
+      - What's the procedure for signing up for the [telc](german_exam) exam?
+      - I'm considering the [dsh](german_exam) exam. How can I proceed with registration?
+      - How do I enroll for the [goethe](german_exam) exam?
+      - Could you provide information on registering for the [testdaf](german_exam) exam?
+      - I want to participate in the [telc](german_exam) language exam.
+      - I'd like to take [Goethe-Zertifikat]{"entity": "german_exam", "value": "goethe"}
+      - [Goethe-Zertifikat]{"entity": "german_exam", "value": "goethe"}
 
-
-- intent: say_german_exam
-  examples: |
-    - i want to register for [telc](german_exam)
-    - i would like to take part in [goethe](german_exam)
-    - [dsh](german_exam)
-    - tell me how to register for [testdaf](german_exam)
-    - i want to register for [goethe](german_exam) exam
-    - I want to register for the [telc](german_exam) exam.
-    - Can you guide me on participating in the [goethe](german_exam) exam?
-    - I'm interested in taking the [dsh](german_exam) exam.
-    - Tell me the process of registering for the [testdaf](german_exam) exam.
-    - I would like to register for the [goethe](german_exam) exam.
-    - What's the procedure for signing up for the [telc](german_exam) exam?
-    - I'm considering the [dsh](german_exam) exam. How can I proceed with registration?
-    - How do I enroll for the [goethe](german_exam) exam?
-    - Could you provide information on registering for the [testdaf](german_exam) exam?
-    - I want to participate in the [telc](german_exam) language exam.
-    - I'd like to take [Goethe-Zertifikat]{"entity": "german_exam", "value": "goethe"}
-    - [Goethe-Zertifikat]{"entity": "german_exam", "value": "goethe"}
-
-- intent: self_study_german
-  examples: |
-    - How can I improve my German language skills?
-    - I want to get better at German. How can I do this at home?
-    - What are some effective ways to self-study German?
-    - Can you recommend resources for self-study in German?
-    - I'm looking for tips on self-studying German. Any advice?
-    - How do I enhance my German language proficiency through self-study?
-    - Are there any online courses for self-learning German?
-    - What are the best methods for self-studying German grammar?
-    - I'm interested in self-study options for German. Where should I start?
-    - Can you suggest books or apps for self-improvement in German?
+  - intent: self_study_german
+    examples: |
+      - How can I improve my German language skills?
+      - I want to get better at German. How can I do this at home?
+      - What are some effective ways to self-study German?
+      - Can you recommend resources for self-study in German?
+      - I'm looking for tips on self-studying German. Any advice?
+      - How do I enhance my German language proficiency through self-study?
+      - Are there any online courses for self-learning German?
+      - What are the best methods for self-studying German grammar?
+      - I'm interested in self-study options for German. Where should I start?
+      - Can you suggest books or apps for self-improvement in German?
