@@ -1,25 +1,25 @@
-# Rasa Chatbot "German Language Electives Assistant - Schoschka"
+# 1. Rasa Chatbot "German Language Electives Assistant - Schoschka"
 
-- [Rasa Chatbot "German Language Electives Assistant - Schoschka"](#rasa-chatbot-german-language-electives-assistant---schoschka)
-  - [Authors](#authors)
-  - [Project description](#project-description)
-  - [Installation](#installation)
-  - [Basic usage](#basic-usage)
-  - [Implementation of the Requests](#implementation-of-the-requests)
-    - [trigger\_test\_responce](#trigger_test_responce)
-    - [remember\_mn](#remember_mn)
-    - [return\_faq](#return_faq)
-    - [remember\_level\_language](#remember_level_language)
-    - [exam\_reg\_procedure](#exam_reg_procedure)
-    - [action\_default\_fallback](#action_default_fallback)
-  - [Architecture](#architecture)
-    - [Rasa model](#rasa-model)
-    - [Web Server](#web-server)
-    - [Database](#database)
-  - [Work done](#work-done)
+- [1. Rasa Chatbot "German Language Electives Assistant - Schoschka"](#1-rasa-chatbot-german-language-electives-assistant---schoschka)
+  - [1.1. Authors](#11-authors)
+  - [1.2. Project description](#12-project-description)
+  - [1.3. Installation](#13-installation)
+  - [1.4. Basic usage](#14-basic-usage)
+  - [1.5. Implementation of the Requests](#15-implementation-of-the-requests)
+    - [1.5.1. trigger\_test\_responce](#151-trigger_test_responce)
+    - [1.5.2. remember\_mn](#152-remember_mn)
+    - [1.5.3. return\_faq](#153-return_faq)
+    - [1.5.4. remember\_level\_language](#154-remember_level_language)
+    - [1.5.5. exam\_reg\_procedure](#155-exam_reg_procedure)
+    - [1.5.6. action\_default\_fallback](#156-action_default_fallback)
+  - [1.6. Architecture](#16-architecture)
+    - [1.6.1. Rasa model](#161-rasa-model)
+    - [1.6.2. Web Server](#162-web-server)
+    - [1.6.3. Database](#163-database)
+  - [1.7. Work done](#17-work-done)
 
 
-## Authors
+## 1.1. Authors
 
 Maxim Lapitan 22200839
 
@@ -27,7 +27,7 @@ Maxim Zotov 22200849
 
 [Link to MyGit repo](https://mygit.th-deg.de/mz20849/mm-sas)
 
-## Project description
+## 1.2. Project description
 
 This Rasa chatbot can help international students to learn German language. One can:
 - ask general questions, 
@@ -42,7 +42,7 @@ See also [usage](#basic-usage) and [implementation of the requests](#implementat
 
 
 
-## Installation
+## 1.3. Installation
 
 Installation should be proceeded in python venv. Steps are done in linux OS, but can be adapted to windows as well. Basically just git clone, create and activate venv (in console or in ide) and install required packages.
 
@@ -56,7 +56,23 @@ pip install -r requirements.txt
 
 Eventually you may need [sqlite3](https://www.sqlite.org/index.html) installed, although it comes out of the box in linux.
 
-## Basic usage
+Additionally sourcing `.env` file might be needed
+
+- Linux
+    ```bash
+    source .env
+    ```
+- Windows
+    ```powershell
+    .\env.ps1
+    ```
+  or
+
+    ```bat
+    .env.bat
+    ```
+
+## 1.4. Basic usage
 Usage consists of 4 parts (You may need several terminal windows for that):
 
 1. Training rasa
@@ -99,7 +115,7 @@ Your setup may look like this
 
 ![](doc/3_windows.png)
 
-## Implementation of the Requests
+## 1.5. Implementation of the Requests
 
 There are several rasa requests, which have to have some sort of processing to them. Therefore we have 6 slots and 6 entities together with 6 custom actions to produce user-tailored responces.
 
@@ -112,7 +128,7 @@ There are 5 custom actions:
 - [exam_reg_procedure](#exam_reg_procedure) - `ActionExamRegistration`, returns instructions to register to goethe, telc and similar exams
 - [action_default_fallback](#action_default_fallback) - `ActionDefaultFallback`, returns nothing, was added to prevent answering randomly to empty string inputs
 
-### trigger_test_responce
+### 1.5.1. trigger_test_responce
 
 Part of the story
 
@@ -133,7 +149,7 @@ Example:
 
 > Success, the server is up and running, rasa is requesting as expected
 
-### remember_mn
+### 1.5.2. remember_mn
 
 Returns your matriculation number, GPA and name with surname (if exists), otherwise you will get some sort of error. Part of the story
 
@@ -184,7 +200,7 @@ Example:
 
 > Hello Maxim Zotov, your id is 22200849 and gpa is 1
 
-### return_faq
+### 1.5.3. return_faq
 
 when user wants to get access to all FAQ at once, he can request it.
 
@@ -202,7 +218,7 @@ Example:
 
 > https://www.th-deg.de/Studierende/AWP-Sprachkurse/FAQ_EN.pdf
 
-### remember_level_language
+### 1.5.4. remember_level_language
 
 Part of story
 
@@ -238,7 +254,7 @@ Example:
 
 > Check your email. It should be an email from julia.vollbrecht@th-deg.de. Inside this email you will be able to find instructions of registration. Good luck!
 
-### exam_reg_procedure
+### 1.5.5. exam_reg_procedure
 
 Part of the story
 
@@ -267,7 +283,7 @@ Example:
 >
 > Note, that self registration without participation of DIT university
 
-### action_default_fallback
+### 1.5.6. action_default_fallback
 
 This was added primarily to stop model from responding to empty promts
 
@@ -277,7 +293,7 @@ Example:
 
 > I'm sorry, I didn't understand that. Can you please provide more information?
 
-## Architecture
+## 1.6. Architecture
 
 Project consists of 3 parts: 
 
@@ -285,11 +301,11 @@ Project consists of 3 parts:
 1. **Web Server** (built using rest-api approach) to facilitate responces from rasa model
 1. **Database**, to which server can connect and execute select commands.
 
-### Rasa model
+### 1.6.1. Rasa model
 
 Simple rasa model, built with 3 entities, 6 slots, 6 custom actions, more than 20 stories, almost 50 intents and 6 rules. 
 
-### Web Server
+### 1.6.2. Web Server
 
 REST-API python server, built using flask. Has several REST addresses, to issue GET requests (by now only GET is supported).
 
@@ -299,7 +315,7 @@ REST-API python server, built using flask. Has several REST addresses, to issue 
 - `/languages/levels/<ll_value>` - return available courses for each level (A1-C1)
 - `/exams/<exam>` - get information about exams (goethe, telc, etc.)
 
-### Database
+### 1.6.3. Database
 
 Database has the following structure:
 
@@ -339,6 +355,6 @@ must_be_taken
 
 Table `side_exam` used to get information regarding german language exams (goethe, telc etc.).
 
-## Work done
+## 1.7. Work done
 
 Work was always carried out together without exceptions. We either sat together, or communicated via video chat and were implementing every task using 2 brains at the same time, thus reducing amount of human errors, because two eyes were looking at the project at the same time.
