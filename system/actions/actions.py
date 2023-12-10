@@ -95,6 +95,7 @@ class ActionRememberMN(Action):
                 return []
         else:
             print(mn_value)
+            return []
             
 
 class ActionReturnFAQ(Action):
@@ -106,21 +107,26 @@ class ActionReturnFAQ(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        url = 'http://127.0.0.1:3000//languages/faq'
-        response = requests.get(url)
+        try:
+            url = 'http://127.0.0.1:3000//languages/faq'
+            response = requests.get(url)
 
-        # Check if the request was successful (status code 200)
-        if response.status_code == 200:
-            # Print the response content
-            print(response.text)
-        else:
-            # Print an error message if the request was not successful
-            print(f"Error: {response.status_code}")
+            # Check if the request was successful (status code 200)
+            if response.status_code == 200:
+                # Print the response content
+                print(response.text)
+            else:
+                # Print an error message if the request was not successful
+                print(f"Error: {response.status_code}")
 
-        dispatcher.utter_message(text=response.text)
+            dispatcher.utter_message(text=response.text)
 
-        return []
-    
+            return []
+        except requests.exceptions.RequestException as e:
+            dispatcher.utter_message(text=f"""Error occured. Althought your request to get FAQ was recognized,
+                                                    rasa encountered problem with the server
+                                                    More: {e}""")
+            return []
     
 class ActionRememberLL(Action):
 
