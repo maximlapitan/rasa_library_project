@@ -9,7 +9,7 @@
 
 from typing import Any, Text, Dict, List
 
-from rasa_sdk import Action, Tracker, slots
+from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 import requests
@@ -25,48 +25,27 @@ class ActionHelloWorld(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         url = 'http://127.0.0.1:3000/test'
-        response = requests.get(url)
-
-        # Check if the request was successful (status code 200)
-        if response.status_code == 200:
-            # Print the response content
-            print(response.text)
-        else:
-            # Print an error message if the request was not successful
-            print(f"Error: {response.status_code}")
-
-        dispatcher.utter_message(text=response.text)
-
-        return []
-
-
-class ActionReturnMN(Action):
-    def name(self) -> Text:
-        return "return_mn"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # Extract the MN value from the tracker
-        mn_value = tracker.get_slot("student_mn")
-
-        if mn_value:
-            message = f"Okay, your student_mn is {mn_value}"
-
-            url = f'http://127.0.0.1:3000/student/{mn_value}'
+        try:
             response = requests.get(url)
             if response.status_code == 200:
-                # Print the content of the response (usually JSON or HTML)
-                name = response.json()["name"]
-                message = f"Your name is {name}"
-                
+                # Print the response content
+                print(response.text)
+                dispatcher.utter_message(text=response.text)
             else:
-                message = f"Error: {response.status_code}"
+                # Print an error message if the request was not successful
+                print(f"Error: {response.status_code}")
+                dispatcher.utter_message(text=f"Error: {response.status_code}")
             
-        else:
-            message = "I couldn't extract the student_mn value from your message."
+        except requests.exceptions.RequestException as e:
+            print(f"Error {e}")
+            dispatcher.utter_message(text=f"Error occured\n More: {e}")
+            
 
-        dispatcher.utter_message(text=message)
+        # Check if the request was successful (status code 200)
+        
 
         return []
+
 
 class ActionRememberMN(Action):
 
@@ -87,27 +66,33 @@ class ActionRememberMN(Action):
         if mn_value:
             message = f"Okay, your student_mn is {mn_value}"
 
-            url = f'http://127.0.0.1:3000/student/{mn_value}'
-            response = requests.get(url)
-            if response.status_code == 200:
-                # Print the content of the response (usually JSON or HTML)
-                name = response.json()["name"]
-                gpa = response.json()["gpa"]
-                surname = response.json()["surname"]
-                number = response.json()["student_mn"]
-                if name is None:
-                    message = f"Your number {mn_value} is not found in our database. Try to correct the typo"
-                    dispatcher.utter_message(text=message)
-                else:
-                    message = f"Hello {name} {surname}, your id is {number} and gpa is {gpa}"
-                    person = response.json()
-                    dispatcher.utter_message(text=message)
-        
-                    return [SlotSet(key, value) for key, value in person.items() if key != "student_mn"]
-            else:
-                message = f"Error: {response.status_code}"
-                return []
+            try: 
+                url = f'http://127.0.0.1:3000/student/{mn_value}'
+                response = requests.get(url)
+                if response.status_code == 200:
+                    # Print the content of the response (usually JSON or HTML)
+                    name = response.json()["name"]
+                    gpa = response.json()["gpa"]
+                    surname = response.json()["surname"]
+                    number = response.json()["student_mn"]
+                    if name is None:
+                        message = f"Your number {mn_value} is not found in our database. Try to correct the typo"
+                        dispatcher.utter_message(text=message)
+                    else:
+                        message = f"Hello {name} {surname}, your id is {number} and gpa is {gpa}"
+                        person = response.json()
+                        dispatcher.utter_message(text=message)
             
+                        return [SlotSet(key, value) for key, value in person.items() if key != "student_mn"]
+                else:
+                    message = f"Error: {response.status_code}"
+                    dispatcher.utter_message(text=message)
+                    return []
+            except requests.exceptions.RequestException as e:
+                dispatcher.utter_message(text=f"""Error occured. Althought you number {mn_value} was recognized,
+                                                    rasa encountered problem with the server
+                                                    More: {e}""")
+                return []
         else:
             print(mn_value)
             
