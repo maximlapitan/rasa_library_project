@@ -4,6 +4,8 @@
   - [1.1. Authors](#11-authors)
   - [1.2. Project description](#12-project-description)
   - [1.3. Installation](#13-installation)
+    - [1.3.1. Software version](#131-software-version)
+    - [1.3.2. Installation steps](#132-installation-steps)
   - [1.4. Basic usage](#14-basic-usage)
   - [1.5. Implementation of the Requests](#15-implementation-of-the-requests)
     - [1.5.1. trigger\_test\_responce](#151-trigger_test_responce)
@@ -18,7 +20,6 @@
     - [1.6.3. Database](#163-database)
   - [1.7. Work done](#17-work-done)
 
-
 ## 1.1. Authors
 
 Maxim Lapitan 22200839
@@ -30,7 +31,8 @@ Maxim Zotov 22200849
 ## 1.2. Project description
 
 This Rasa chatbot can help international students to learn German language. One can:
-- ask general questions, 
+
+- ask general questions,
 - ask how to register to exams (one-site and exams like goethe)
 - get additional information regarding rules
 
@@ -40,9 +42,24 @@ Internal structure is covered in [here](#architecture)
 
 See also [usage](#basic-usage) and [implementation of the requests](#implementation-of-the-requests)
 
-
-
 ## 1.3. Installation
+
+### 1.3.1. Software version
+
+Please note, that project uses following software versions:
+
+
+| name        | version                                     |
+| ----------- | ------------------------------------------- |
+| python      | 3.10.13                                     |
+| rasa        | 3.6.14                                      |
+| kernel      | Linux-6.6.6-1-default-x86_64-with-glibc2.38 |
+| flask       | 3.0.0                                       |
+| tensorboard | 2.12.3                                      |
+
+Version of subpackages can be seen in [requirements.txt](requirements.txt)
+
+### 1.3.2. Installation steps
 
 Installation should be proceeded in python venv. Steps are done in linux OS, but can be adapted to windows as well. Basically just git clone, create and activate venv (in console or in ide) and install required packages.
 
@@ -59,57 +76,60 @@ Eventually you may need [sqlite3](https://www.sqlite.org/index.html) installed, 
 Additionally sourcing `.env` file might be needed
 
 - Linux
-    ```bash
-    source .env
-    ```
+
+  ```bash
+  source .env
+  ```
 - Windows
-    ```powershell
-    .\env.ps1
-    ```
+
+  ```powershell
+  .\env.ps1
+  ```
+
   or
 
-    ```bat
-    .env.bat
-    ```
+  ```bat
+  .env.bat
+  ```
 
 ## 1.4. Basic usage
+
 Usage consists of 4 parts (You may need several terminal windows for that):
 
 1. Training rasa
-1. Starting flask server
-1. Running rasa actions
-1. Activating rasa shell and working with trained model
+2. Starting flask server
+3. Running rasa actions
+4. Activating rasa shell and working with trained model
 
 Let's do it step by step.
 
 1. Let's train model **(Window 1)**
-    ```bash
-    cd system
-    rasa train
-    ```
-1. While rasa is doing it's training, let's start our **flask** webserver. There are 2 equal options **(Window 2)**
 
-    1. ```bash
-        cd mm-sas/
-        flask run -p 3000
-        ```
-    2. ```bash
-        cd mm-sas/webserver
-        python3 server.py
-        ```
+   ```bash
+   cd system
+   rasa train
+   ```
+2. While rasa is doing it's training, let's start our **flask** webserver. There are 2 equal options **(Window 2)**
 
-1. Now let's activate rasa actions by running **(Window 3)**
+   1. ```bash
+       cd mm-sas/
+       flask run -p 3000
+      ```
+   2. ```bash
+       cd mm-sas/webserver
+       python3 server.py
+      ```
+3. Now let's activate rasa actions by running **(Window 3)**
 
-    ```
-    cd mm-sas/system
-    rasa run actions
-    ```
+   ```
+   cd mm-sas/system
+   rasa run actions
+   ```
+4. After model is trained, we can start rasa shell and input something in it. For this run **(Window 1)**
 
-1. After model is trained, we can start rasa shell and input something in it. For this run **(Window 1)**
-
-    ```bash
-    rasa shell
-    ```
+   ```bash
+   rasa shell
+   ```
 
 Your setup may look like this
 
@@ -145,7 +165,7 @@ Will return *Success, the server is up and running, rasa is requesting as expect
 
 Example:
 
-> **Your input** -> test              
+> **Your input** -> test
 
 > Success, the server is up and running, rasa is requesting as expected
 
@@ -190,7 +210,7 @@ slots:
             action: remember_mn
 ```
 
-Example: 
+Example:
 
 > **Your input** ->  hi
 
@@ -210,9 +230,10 @@ when user wants to get access to all FAQ at once, he can request it.
         - intent: get_faq
         - action: return_faq
 ```
+
 `return_faq` will contact server to get link to most recent faq
 
-Example: 
+Example:
 
 > **Your input** -> faq
 
@@ -232,6 +253,7 @@ Part of story
       - intent: ask_register_procedure
       - action: utter_register_procedure
 ```
+
 When user wants to learn german, user gets asked about his level and then gets possible courses to attend. After that one can request registration instructions.
 
 Example:
@@ -269,7 +291,7 @@ Part of the story
 
 When one wants to pass german exam, system asks about type of the exam and then returns options how to register.
 
-Example: 
+Example:
 
 > **Your input** ->  How do I register for a German exam?
 
@@ -287,23 +309,23 @@ Example:
 
 This was added primarily to stop model from responding to empty promts
 
-Example: 
+Example:
 
-> **Your input** -> 
+> **Your input** ->
 
 > I'm sorry, I didn't understand that. Can you please provide more information?
 
 ## 1.6. Architecture
 
-Project consists of 3 parts: 
+Project consists of 3 parts:
 
 1. **Rasa Model**: yaml files describing domain and actions file to communicate with webserver
-1. **Web Server** (built using rest-api approach) to facilitate responces from rasa model
-1. **Database**, to which server can connect and execute select commands.
+2. **Web Server** (built using rest-api approach) to facilitate responces from rasa model
+3. **Database**, to which server can connect and execute select commands.
 
 ### 1.6.1. Rasa model
 
-Simple rasa model, built with 3 entities, 6 slots, 6 custom actions, more than 20 stories, almost 50 intents and 6 rules. 
+Simple rasa model, built with 3 entities, 6 slots, 6 custom actions, more than 20 stories, almost 50 intents and 6 rules.
 
 ### 1.6.2. Web Server
 
@@ -329,6 +351,7 @@ student_mn	name	surname	gpa
 10817623	Jack	Perez	2.7
 12399158	Yvonne	Johnson	2.9
 ```
+
 Table is also filled with all faculties and programmes, which were at DIT website.
 
 ```sql
