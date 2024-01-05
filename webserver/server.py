@@ -83,6 +83,26 @@ def give_info_by_exam(exam):
     conn.close()
     return result
 
+@app.post('/insert_data')
+def insert_data():
+    data_list = request.get_json()
+
+    conn = sqlite3.connect(file_location)
+    cursor = conn.cursor()
+
+    column_names = [data['column_name'] for data in data_list]
+    values = [data['value'] for data in data_list]
+
+    sql_query = f"INSERT INTO questionnaire ({', '.join(column_names)}) VALUES ({', '.join(['?'] * len(values))});"
+
+    cursor.execute(sql_query, values)
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({"status": "success"})
+
+
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=3000, debug=True)

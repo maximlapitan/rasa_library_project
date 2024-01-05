@@ -115,7 +115,37 @@ stories:
       - intent: intent_attend_several
       - action: utter_attend_several
 
-  - story: learn german by yourslef
+  - story: Learn German By Yourslef
     steps:
       - intent: self_study_german
       - action: utter_self_study_german
+
+  - story: Interactive Questionnaire 
+    steps:
+      - intent: ask_me_anything
+      - action: questionnaire_form
+      - active_loop: questionnaire_form
+      - action: utter_ask_reason_to_study_in_germany
+      - slot_was_set: 
+        - requested_slot: reason_to_study_in_germany
+      - action: utter_ask_language_about_question
+      - slot_was_set:
+        - requested_slot: language_about_question
+      - action: utter_ask_mother_country
+      - slot_was_set:
+        - requested_slot: mother_country
+      - action: questionnaire_form
+      - active_loop: null
+      - action: utter_submit
+      - action: utter_questionnaire_slots
+
+  - story: User interrupts the form and doesn't want to continue
+    steps:
+    - intent: ask_me_anything
+    - action: questionnaire_form
+    - active_loop: questionnaire_form
+    - intent: Stop
+    - action: utter_ask_continue
+    - intent: Stop
+    - action: action_deactivate_loop
+    - active_loop: null

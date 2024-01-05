@@ -366,3 +366,44 @@ nlu:
       - What are the best methods for self-studying German grammar?
       - I'm interested in self-study options for German. Where should I start?
       - Can you suggest books or apps for self-improvement in German?
+
+  - intent: ask_me_anything
+    examples: |
+      - I do not know how can you help me, so I can help you if you want
+      - I do not know what to do
+      - It is boring right now
+      - Ask me anything
+
+  - intent: inform
+    examples: |
+      - [Job](reason_to_study_in_germany)    
+      - [Opportunities](reason_to_study_in_germany)  
+      - [Yes and i want to improve it by the end of my study](language_about_question)
+      - [Russia](mother_country)
+      - [USA](mother_country)
+      - [Germany](mother_country)
+      - intent: inform
+      - [Job opportunities](reason_to_study_in_germany)
+      - [Career prospects](reason_to_study_in_germany)
+      - [Yes, and I want to improve my language skills by the end of my study](language_about_question)
+      - [I come from Russia](mother_country)
+      - [Originally from the USA](mother_country)
+      - [I was born in Germany](mother_country)
+      - [Exploring job options](reason_to_study_in_germany)
+      - [Enhancing my career](reason_to_study_in_germany)
+      - [Affinity for the German language](language_about_question)
+      - [Improving language proficiency](language_about_question)
+      - [USA is my home country](mother_country)
+      - [Embracing my German roots](mother_country)
+      - [Seeking job advancements](reason_to_study_in_germany)
+      - [Hoping for career growth](reason_to_study_in_germany)
+      - [Language improvement is a priority](language_about_question)
+      - [Russian by birth](mother_country)
+      - [American roots](mother_country)
+      - [German by nationality](mother_country)
+
+  - intent: Stop
+    examples: |
+      - Stop
+      - I do not want to continue
+      - I do not know how to answer to this questions

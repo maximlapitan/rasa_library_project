@@ -9,9 +9,10 @@
 
 from typing import Any, Text, Dict, List
 
-from rasa_sdk import Action, Tracker
+from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.types import DomainDict
 import requests
 
 
@@ -216,3 +217,64 @@ class ActionExamRegistration(Action):
                                                     rasa encountered problem with the server
                                                     More: {e}""")
             return []
+
+
+
+
+class ValidateQuestionnaireForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_questionnaire_form"
+
+    def __init__(self):
+        self.data_to_insert = []  # Initialize an empty list to accumulate data
+
+    def validate_reason_to_study_in_germany(self, 
+                                            slot_value: Any,
+                                            dispatcher: CollectingDispatcher,
+                                            tracker: Tracker,
+                                            domain: DomainDict,
+                                            ) -> Dict[Text, Any]:
+        dispatcher.utter_message(text=f"OK! You study here because {slot_value}")
+        self.add_to_data("Reason", slot_value)
+        return {"reason_to_study_in_germany": slot_value}
+
+    def validate_language_about_question(self, 
+                                        slot_value: Any,
+                                        dispatcher: CollectingDispatcher,
+                                        tracker: Tracker,
+                                        domain: DomainDict,
+                                        ) -> Dict[Text, Any]:
+        dispatcher.utter_message(text=f"OK! You think about the German language that: {slot_value}")
+        self.add_to_data("Language_question", slot_value)
+        return {"language_about_question": slot_value}
+
+    def validate_mother_country(self, 
+                                slot_value: Any,
+                                dispatcher: CollectingDispatcher,
+                                tracker: Tracker,
+                                domain: DomainDict,
+                                ) -> Dict[Text, Any]:
+        dispatcher.utter_message(text=f"OK! You are from: {slot_value}")
+        self.add_to_data("mother_country", slot_value)
+        print(self.data_to_insert)
+        self.insert_into_database()
+        return {"mother_country": slot_value}
+
+    def add_to_data(self, column_name: str, value: Any):
+        self.data_to_insert.append({"column_name": column_name, "value": value})
+
+    def insert_into_database(self):
+        url = "http://127.0.0.1:3000/insert_data"
+
+        try:
+            response = requests.post(url, json=self.data_to_insert)
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            print(f"Error inserting data into the database: {e}")
+
+        # Clear the accumulated data after inserting
+        self.data_to_insert = []
+
+
+
+

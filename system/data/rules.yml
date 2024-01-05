@@ -25,3 +25,20 @@ rules:
     steps:
       - intent: say_matriculation
       - action: remember_mn
+
+  - rule: Activate Questionnaire Form
+    steps: 
+    - intent: ask_me_anything
+    - action: questionnaire_form
+    - active_loop: questionnaire_form
+
+  - rule: Submit Questionnaire Form
+    condition: 
+    - active_loop: questionnaire_form
+    steps: 
+    - action: questionnaire_form
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: utter_submit
+    - action: utter_questionnaire_slots

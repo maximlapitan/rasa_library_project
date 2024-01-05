@@ -4,13 +4,57 @@ config:
 session_config:
   session_expiration_time: 480
   carry_over_slots_to_new_session: true
+entities:
+- matriculation_number:
+    use_synonyms: true
+    examples: |
+      - \d{8}
+
+- language_level:
+    use_synonyms: true
+    examples: |
+      - (A1|A2|B1|B2|C1|C2)
+
+- german_exam:
+    examples: |
+      - telc
+      - goethe
+      - toefl
+      - dsh
+- reason_to_study_in_germany
+- language_about_question
+- mother_country
 
 slots:
+  reason_to_study_in_germany:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: reason_to_study_in_germany
+        conditions: 
+        - active_loop: questionnaire_form
+
+  language_about_question:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: language_about_question
+        conditions: 
+        - active_loop: questionnaire_form
+
+  mother_country:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: mother_country
+        conditions: 
+        - active_loop: questionnaire_form
+    
   student_mn:
     type: text
     mappings:
       - type: from_entity
-        entity: matriculation_number
+        entity: matriculation_number  
 
   language_lvl:
     type: text
@@ -41,6 +85,13 @@ slots:
     mappings:
       - type: from_entity
         entity: german_exam
+
+forms:
+  questionnaire_form:
+    required_slots:
+    - reason_to_study_in_germany
+    - language_about_question
+    - mother_country
 
 intents:
   - greet
@@ -78,24 +129,10 @@ intents:
   - want_german_exam
   - say_german_exam
   - self_study_german
+  - ask_me_anything
+  - inform
+  - Stop
 
-entities:
-  - matriculation_number:
-      use_synonyms: true
-      examples: |
-        - \d{8}
-
-  - language_level:
-      use_synonyms: true
-      examples: |
-        - (A1|A2|B1|B2|C1|C2)
-
-  - german_exam:
-      examples: |
-        - telc
-        - goethe
-        - toefl
-        - dsh
 
 responses:
   utter_greet:
@@ -272,6 +309,24 @@ responses:
 
         \n Remember to practice regularly, immerse yourself in the language, and enjoy the learning process!"
 
+  utter_submit:
+    - text: "Thank you for you responces. We have added them to our DataBase, but it is all anonymous"
+
+  utter_questionnaire_slots:
+    - text: Your answers for questionnaire are {reason_to_study_in_germany}, {language_about_question}, {mother_country}
+
+  utter_ask_reason_to_study_in_germany:
+    - text: "Why did you want to study in Germany? What is the reason?"  
+
+  utter_ask_language_about_question:
+    - text: "Do you know german language? Do you want to improve it while studying in Uni?"   
+
+  utter_ask_mother_country:
+    - text: "Where are you from? (Your country where you have born)"  
+
+  utter_ask_continue:
+    - text: "Do you want to stop the form?"
+  
 actions:
   - trigger_test_responce
   - remember_mn
@@ -279,3 +334,7 @@ actions:
   - remember_level_language
   - exam_reg_procedure
   - action_default_fallback
+  - utter_questionnaire_slots
+  - utter_ask_continue
+  - utter_submit
+  - validate_questionnaire_form
