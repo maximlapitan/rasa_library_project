@@ -24,6 +24,8 @@ entities:
 - reason_to_study_in_germany
 - language_about_question
 - mother_country
+- elective_name
+- elective_type
 
 slots:
   reason_to_study_in_germany:
@@ -55,6 +57,24 @@ slots:
     mappings:
       - type: from_entity
         entity: matriculation_number  
+  
+  elective_name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: elective_name  
+
+  elective_type:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: elective_type  
+
+  electives_list:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
 
   language_lvl:
     type: text
@@ -132,6 +152,10 @@ intents:
   - ask_me_anything
   - inform
   - Stop
+  - ask_how_to_register_for_one_elective
+  - ask_for_information_about_one_elective
+  - say_type_of_elective
+  - ask_available_electives
 
 
 responses:
@@ -267,6 +291,8 @@ responses:
   utter_register_procedure:
     - text: Check your email. It should be an email from julia.vollbrecht@th-deg.de. Inside this email you will be able to find instructions of registration. Good luck!
 
+  utter_register_procedure_one_elective:
+    - text: You need to write email to eva.toman@th-deg.de. Ask about {elective_name}
   utter_which_exam:
     - text: Which one exam do you like do pass? Say me its name.
 
@@ -326,6 +352,10 @@ responses:
 
   utter_ask_continue:
     - text: "Do you want to stop the form?"
+
+  
+  utter_ask_for_type_of_elective:
+    - text: "There are 3 types of electives: social, orientational_knowledge, german. Choose one."
   
 actions:
   - trigger_test_responce
@@ -338,3 +368,6 @@ actions:
   - utter_ask_continue
   - utter_submit
   - validate_questionnaire_form
+  - give_information_for_one_elective
+  - give_list_of_electives
+  - utter_register_procedure_one_elective

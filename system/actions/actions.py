@@ -276,5 +276,69 @@ class ValidateQuestionnaireForm(FormValidationAction):
         self.data_to_insert = []
 
 
+class GiveListOfElectives(Action):
 
+    def name(self) -> Text:
+        return "give_list_of_electives"
 
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        elective_type = tracker.get_slot("elective_type")
+
+        url = f'http://127.0.0.1:3000/electives/{elective_type}'
+        print(url)
+
+        try:
+            response = requests.get(url)
+            print(response.json())
+            # Check if the request was successful (status code 200)
+            if response.status_code == 200:
+                message = f"You can choose from several options:\n" + \
+                    "\n".join([elective["elective_name"]
+                              for elective in response.json()])
+            else:
+                # Print an error message if the request was not successful
+                print(f"Error: {response.status_code}")
+                message = f"Elective with type: {elective_type} not found in our electives database"
+
+            dispatcher.utter_message(text=message)
+
+            return [SlotSet("electives_list", response.json())]
+        except requests.exceptions.RequestException as e:
+            dispatcher.utter_message(text=f"""Error occured. Althought your wish to take {elective_type} was recognized,
+                                                    rasa encountered problem with the server
+                                                    More: {e}""")
+            return []
+
+class GiveInformationForOneElective(Action):
+
+    def name(self) -> Text:
+        return "give_information_for_one_elective"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        elective_name = tracker.get_slot("elective_name")
+
+        url = f'http://127.0.0.1:3000/elective/{elective_name}'
+        response = requests.get(url)
+        print(response.text)
+        try:
+            if response.status_code == 200:
+                message = f"You selected {elective_name}. Here is your link where you can find all information about this elective: {response.text}"
+            else:
+                # Print an error message if the request was not successful
+                print(f"Error: {response.status_code}")
+                message = f"Elective with type: {elective_name} not found in our electives database"
+
+            dispatcher.utter_message(text=message)
+
+            return []
+        except requests.exceptions.RequestException as e:
+            dispatcher.utter_message(text=f"""Error occured. Althought your wish to take {elective_name} was recognized,
+                                                    rasa encountered problem with the server
+                                                    More: {e}""")
+            return []

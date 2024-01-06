@@ -149,3 +149,16 @@ stories:
     - intent: Stop
     - action: action_deactivate_loop
     - active_loop: null
+
+  - story: Explore Elective Courses
+    steps:
+      - intent: ask_available_electives
+      - action: utter_ask_for_type_of_elective
+      - intent: say_type_of_elective
+      - action: give_list_of_electives
+      - intent: ask_for_information_about_one_elective
+      - action: give_information_for_one_elective
+      - intent: ask_how_to_register_for_one_elective
+      - action: utter_register_procedure_one_elective
+  
+  

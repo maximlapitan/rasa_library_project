@@ -401,9 +401,122 @@ nlu:
       - [Russian by birth](mother_country)
       - [American roots](mother_country)
       - [German by nationality](mother_country)
+      - [I come from {mother_country}](mother_country)
+      - [Originally from {mother_country}](mother_country)
+      - [I was born in {mother_country}](mother_country)
+      - [{mother_country}](mother_country)
+      - [{reason_to_study_in_germany}](reason_to_study_in_germany)
+      - [{language_about_question}](language_about_question)
 
   - intent: Stop
     examples: |
       - Stop
       - I do not want to continue
       - I do not know how to answer to this questions
+
+  - intent: ask_available_electives
+    examples: |
+      - What electives can I choose from?
+      - Could you provide a list of the electives that are available?
+      - What elective options are currently open for enrollment?
+      - Can you give me information on the electives that I can take?
+      - Which electives are currently being offered?
+      - What are my choices for electives?
+      - Are there any electives available for registration?
+      - Could you list the electives that I have the option to select?
+      - What electives are accessible for students this semester?
+      - Are there any open slots for electives, and if so, which ones?
+      - Can you share the list of electives that are currently open for enrollment?
+      - What are the elective courses that I can consider?
+      - Are there elective subjects available, and if yes, what are they?
+      - Could you tell me about the electives that are currently open for registration?
+
+  
+  - intent: say_type_of_elective
+    examples: |
+      - [social](elective_type)
+      - [orientational_knowledge](elective_type)
+      - [german](elective_type)
+      - [{elective_type}](elective_type)
+  
+  - intent: ask_for_information_about_one_elective
+    examples: |
+      - [Achtsamkeitsbasierte Stressreduktion (MBSR)](elective_name)
+      - [Bavarian Culture](elective_name)
+      - [Personal and Professional Skills](elective_name)
+      - [Communication & Rhetoric for Mentors](elective_name)
+      - [Cross-Cultural Teambuilding Workshop](elective_name)
+      - [Education 4.0 - Digital Innovation Units]
+      - [Volunteering](elective_name)
+      - [Ethical Questions in international and intercultural Environments. Argumentation, Debate and Negotiations.](elective_name)
+      - [Leadership Psychology](elective_name)
+      - [Happiness - Wie Sie unvermeidlich glücklich werden](elective_name)
+      - [Interkulturelle Kompetenzen](elective_name)
+      - [Interkulturelle Sensibilisierung (Grundkurs)](elective_name)
+      - [Interkulturelle Sensibilisierung - Länderspezifisch (Aufbaukurs)](elective_name)
+      - [Intercultural Skills](elective_name)
+      - [International Teambuilding](elective_name)
+      - [Kommunikation und Rhetorik für Erstsemesterpaten und Mentoren](elective_name)
+      - [Kompetenzen und Techniken der tutoriellen Betreuung](elective_name)
+      - [Konflikt- und Teammanagement](elective_name)
+      - [Medienkompetenz und Lernen in einer digitalen Gesellschaft](elective_name)
+      - [MINT-Workshops mit Schüler:innen als Tutor:in](elective_name)
+      - [Persönlichkeitskompetenzen für dual Studierende](elective_name)
+      - [Problemlösungen in der Praxis](elective_name)
+      - [Qualitative Research Methods](elective_name)
+      - [Strategie - und Projektmanagement](elective_name)
+      - [Welcome@DIT](elective_name)
+      - ["Wissenschaftliches Arbeiten und Schreiben – Erfolgreich und effizient in Studien-, Bachelor- und Masterarbeiten"](elective_name)
+      - [Asian Emerging Economies and Doing Business in the Asian Region](elective_name)
+      - [Basics of International Sales and Business Development](elective_name)
+      - [Basics of Management Consulting](elective_name)
+      - [Business Analytics for Data-Driven Decision-Making](elective_name)
+      - [Business Storytelling](elective_name)
+      - [Campus-Fernsehen mit NIEDERBAYERN TV](elective_name)
+      - [Corporate Social Responsibility](elective_name)
+      - [Der Mensch im Spannungsfeld von Gesellschaft, Politik und Medien](elective_name)
+      - [EcoLab-News – News from Ecology and Economy](elective_name)
+      - [ECRI-Band](elective_name)
+      - [Einführung in die digitale Fotografie](elective_name)
+      - [Einführung in die FEM-Simulation einfacher physikalischer Probleme](elective_name)
+      - [Fehlervermeidung in der Entwicklung](elective_name)
+      - [Geschäftsmodelle entwickeln - Der Weg zum eigenen Startup](elective_name)
+      - [Grundlagen der Bionik](elective_name)
+      - [Grundlagen des Handelsmanagements](elective_name)
+      - [Grundlagen des Marketing](elective_name)
+      - [Grundlagen des Verkaufs](elective_name)
+      - [Grundlagen des Vertriebs](elective_name)
+      - [Gründungsmanagement](elective_name)
+      - [GROW GründerAkademie (start-up academy)](elective_name)
+      - [GROW GründerWerkstatt (start-up workshop)](elective_name)
+      - [Introduction to Sound-Engineering](elective_name)
+      - [Lehrredaktion NIEDERBAYERN TV](elective_name)
+      - [Mathematics with Matlab](elective_name)
+      - [Mental Disorders in Feature Films](elective_name)
+      - [Projekt Formula Student](elective_name)
+      - [Theatre](elective_name)
+      - [German A1/ part 1 + 2](elective_name)
+      - [German A1/ part 3 + 4](elective_name)
+      - [German A1/ Grammar and Vocabulary](elective_name)
+      - [German A2/ part 1 + 2](elective_name)
+      - [German A2/ part 3 + 4](elective_name)
+      - [German A2/ Grammar and Vocabulary](elective_name)
+      - [German B1/ part 1 + 2](elective_name)
+      - [German B1/ part 3 + 4](elective_name)
+      - [German B1/ Grammar and Vocabulary](elective_name)
+      - [German B2/ part 1 + 2](elective_name)
+      - [German B2/ part 3 + 4](elective_name)
+      - [German B2/ Grammar and Vocabulary](elective_name)
+      - [German B2/ C1 Text Production](elective_name)
+      - [German B2/ C1 Conversation and Presentation](elective_name)
+      - [German C1/ part 1 + 2](elective_name)
+      - [German C1/ part 3 + 4](elective_name)
+      - [{elective_name}](elective_name)
+
+  - intent: ask_how_to_register_for_one_elective
+    examples: |
+      - How can I join this elective?
+      - What should I do to register for this elective?
+      - Can you guide me through the registration process for this elective?
+      - What are the steps to enroll in the elective?
+  

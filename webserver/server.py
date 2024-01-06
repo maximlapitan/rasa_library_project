@@ -102,6 +102,34 @@ def insert_data():
 
     return jsonify({"status": "success"})
 
+@app.get("/electives/<elective_type>")
+def give_list_of_electives(elective_type):
+    conn = sqlite3.connect(file_location)
+    cursor = conn.cursor()
+    columns = ["elective_name"]
+    cursor.execute(
+        f'select {",".join(columns)} from electives where cathegory="{elective_type}";')
+    conn.commit()
+    column_names = [column for column in get_column_names(
+        "electives") if column in columns]
+    electives = cursor.fetchall()
+    result = [dict(zip(column_names, elective)) for elective in electives]
+    print(electives)
+    conn.close()
+    return result
+
+@app.get("/elective/<elective_name>")
+def give_link_of_elective(elective_name):
+    conn = sqlite3.connect(file_location)
+    cursor = conn.cursor()
+    cursor.execute(
+        f'select link from electives where elective_name="{elective_name}";')
+    conn.commit()
+    elective_link = cursor.fetchall()
+    print(elective_link)
+    result = str(elective_link)[2:-3]
+    print(result)
+    return result
 
 
 if __name__ == '__main__':
