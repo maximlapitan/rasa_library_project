@@ -5,8 +5,6 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 
-# This is a simple example for a custom action which utters "Hello World!"
-
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker, FormValidationAction
@@ -16,6 +14,7 @@ from rasa_sdk.types import DomainDict
 import requests
 
 
+# Custom action to test server connection
 class ActionHelloWorld(Action):
 
     def name(self) -> Text:
@@ -46,6 +45,7 @@ class ActionHelloWorld(Action):
         return []
 
 
+# Custom action to remember matriculation number and get information by matriculation number about student
 class ActionRememberMN(Action):
 
     def name(self) -> Text:
@@ -97,6 +97,7 @@ class ActionRememberMN(Action):
             return []
 
 
+# Custom action to return FAQ information
 class ActionReturnFAQ(Action):
 
     def name(self) -> Text:
@@ -128,6 +129,7 @@ class ActionReturnFAQ(Action):
             return []
 
 
+# Custom action to remembers level language and send all information that will be helpful for this specific level
 class ActionRememberLL(Action):
 
     def name(self) -> Text:
@@ -170,6 +172,7 @@ class ActionRememberLL(Action):
         return []
 
 
+# Custom action to request fallback mechanism
 class ActionDefaultFallback(Action):
     def name(self) -> Text:
         return "action_default_fallback"
@@ -181,6 +184,7 @@ class ActionDefaultFallback(Action):
         return []
 
 
+# Custom action that utters user information about specific exam
 class ActionExamRegistration(Action):
     def name(self) -> Text:
         return "exam_reg_procedure"
@@ -220,7 +224,7 @@ class ActionExamRegistration(Action):
 
 
 
-
+# Custom action to validate questionnaire form while chatting by making utters and remembering responses
 class ValidateQuestionnaireForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_questionnaire_form"
@@ -263,6 +267,7 @@ class ValidateQuestionnaireForm(FormValidationAction):
     def add_to_data(self, column_name: str, value: Any):
         self.data_to_insert.append({"column_name": column_name, "value": value})
 
+    # inserting data to database by calling server
     def insert_into_database(self):
         url = "http://127.0.0.1:3000/insert_data"
 
@@ -276,6 +281,7 @@ class ValidateQuestionnaireForm(FormValidationAction):
         self.data_to_insert = []
 
 
+# Custom action to give list of electives 
 class GiveListOfElectives(Action):
 
     def name(self) -> Text:
@@ -312,6 +318,8 @@ class GiveListOfElectives(Action):
                                                     More: {e}""")
             return []
 
+
+# Custom action to give information about one specific elective that user is interested in
 class GiveInformationForOneElective(Action):
 
     def name(self) -> Text:
