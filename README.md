@@ -14,6 +14,9 @@
     - [1.5.4. remember\_level\_language](#154-remember_level_language)
     - [1.5.5. exam\_reg\_procedure](#155-exam_reg_procedure)
     - [1.5.6. action\_default\_fallback](#156-action_default_fallback)
+    - [1.5.7. validate\_questionnaire\_form](#157-validate_questionnaire_form)
+    - [1.5.8. give\_information\_for\_one\_elective](#158-give_information_for_one_elective)
+    - [1.5.9. give\_list\_of\_electives](#159-give_list_of_electives)
   - [1.6. Architecture](#16-architecture)
     - [1.6.1. Rasa model](#161-rasa-model)
     - [1.6.2. Web Server](#162-web-server)
@@ -48,7 +51,6 @@ See also [usage](#basic-usage) and [implementation of the requests](#implementat
 
 Please note, that project uses following software versions:
 
-
 | name        | version                                     |
 | ----------- | ------------------------------------------- |
 | python      | 3.10.13                                     |
@@ -80,6 +82,7 @@ Additionally sourcing `.env` file might be needed
   ```bash
   source .env
   ```
+
 - Windows
 
   ```powershell
@@ -109,22 +112,26 @@ Let's do it step by step.
    cd system
    rasa train
    ```
+
 2. While rasa is doing it's training, let's start our **flask** webserver. There are 2 equal options **(Window 2)**
 
    1. ```bash
        cd mm-sas/
        flask run -p 3000
       ```
+
    2. ```bash
        cd mm-sas/webserver
        python3 server.py
       ```
+
 3. Now let's activate rasa actions by running **(Window 3)**
 
    ```
    cd mm-sas/system
    rasa run actions
    ```
+
 4. After model is trained, we can start rasa shell and input something in it. For this run **(Window 1)**
 
    ```bash
@@ -137,16 +144,21 @@ Your setup may look like this
 
 ## 1.5. Implementation of the Requests
 
-There are several rasa requests, which have to have some sort of processing to them. Therefore we have 6 slots and 6 entities together with 6 custom actions to produce user-tailored responces.
+There are several rasa requests, which have to be extra processed. Therefore we have 12 slots and 8 entities together with 9 custom actions to produce user-tailored responces.
 
-There are 5 custom actions:
+Additionally this rasa chatbot possesses a questionaire form.
 
-- [trigger_test_responce](#trigger_test_responce) - `ActionHelloWorld`, triggers test responce from REST server
-- [remember_mn](#remember_mn) - `ActionRememberMN`, accesses the server and returns student (if he is available). Additionally sets slots `name`, `surname` and `gpa` using `return [SlotSet(key, value) for key, value in person.items() if key != "student_mn"]`
-- [return_faq](#return_faq) - `ActionReturnFAQ`, returns link to faq, if user asks for frequent questions
-- [remember_level_language](#remember_level_language) - `ActionRememberLL`, gets user's level of german and provides him with possible courses
-- [exam_reg_procedure](#exam_reg_procedure) - `ActionExamRegistration`, returns instructions to register to goethe, telc and similar exams
-- [action_default_fallback](#action_default_fallback) - `ActionDefaultFallback`, returns nothing, was added to prevent answering randomly to empty string inputs
+There are 9 custom actions:
+
+- [trigger_test_responce](#151-trigger_test_responce) - `ActionHelloWorld`, triggers test responce from REST server
+- [remember_mn](#152-remember_mn) - `ActionRememberMN`, accesses the server and returns student (if he is available). Additionally sets slots `name`, `surname` and `gpa` using `return [SlotSet(key, value) for key, value in person.items() if key != "student_mn"]`
+- [return_faq](#153-return_faq) - `ActionReturnFAQ`, returns link to faq, if user asks for frequent questions
+- [remember_level_language](#154-remember_level_language) - `ActionRememberLL`, gets user's level of german and provides him with possible courses
+- [exam_reg_procedure](#155-exam_reg_procedure) - `ActionExamRegistration`, returns instructions to register to goethe, telc and similar exams
+- [action_default_fallback](#156-action_default_fallback) - `ActionDefaultFallback`, returns nothing, was added to prevent answering randomly to empty string inputs
+- [validate_questionnaire_form](#157-validate_questionnaire_form) - `ValidateQuestionnaireForm`, responsible to validate questionnaire form while chatting
+- [give_information_for_one_elective](#158-give_information_for_one_elective) - `GiveInformationForOneElective`, custom action to give information about one specific elective that user is interested in
+- [give_list_of_electives](#159-give_list_of_electives) - `GiveListOfElectives`, custom action to give list of electives
 
 ### 1.5.1. trigger_test_responce
 
@@ -237,7 +249,7 @@ Example:
 
 > **Your input** -> faq
 
-> https://www.th-deg.de/Studierende/AWP-Sprachkurse/FAQ_EN.pdf
+> <https://www.th-deg.de/Studierende/AWP-Sprachkurse/FAQ_EN.pdf>
 
 ### 1.5.4. remember_level_language
 
@@ -274,7 +286,7 @@ Example:
 
 > **Your input** ->  how to register
 
-> Check your email. It should be an email from julia.vollbrecht@th-deg.de. Inside this email you will be able to find instructions of registration. Good luck!
+> Check your email. It should be an email from <julia.vollbrecht@th-deg.de>. Inside this email you will be able to find instructions of registration. Good luck!
 
 ### 1.5.5. exam_reg_procedure
 
@@ -301,7 +313,7 @@ Example:
 
 > You selected goethe
 >
-> You can find additional information at https://www.goethe.de/de/spr/kup/prf/prf.html
+> You can find additional information at <https://www.goethe.de/de/spr/kup/prf/prf.html>
 >
 > Note, that self registration without participation of DIT university
 
@@ -314,6 +326,175 @@ Example:
 > **Your input** ->
 
 > I'm sorry, I didn't understand that. Can you please provide more information?
+
+### 1.5.7. validate_questionnaire_form
+
+Part of 2 stories:
+
+```yaml
+- story: Interactive Questionnaire 
+    steps:
+      - intent: ask_me_anything
+      - action: questionnaire_form
+      - active_loop: questionnaire_form
+      - action: utter_ask_reason_to_study_in_germany
+      - slot_was_set: 
+        - requested_slot: reason_to_study_in_germany
+      - action: utter_ask_language_about_question
+      - slot_was_set:
+        - requested_slot: language_about_question
+      - action: utter_ask_mother_country
+      - slot_was_set:
+        - requested_slot: mother_country
+      - action: questionnaire_form
+      - active_loop: null
+      - action: utter_submit
+      - action: utter_questionnaire_slots
+```
+
+Asks for reasons to study in Germany and inquires about home country. Story begins when user wants to be asked.
+
+His answers are anonymosly written to a database like this:
+
+```sql
+select * from questionnaire;
+Reason Language_question mother_country
+Career prospects Improving language proficiency Russian by birth
+Career prospects Improving language proficiency Germany
+Job Language improvement is a priority Russian by birth
+```
+
+Dialog flow may look like this:
+
+> **Your input** ->Ask me anything
+
+> Why did you want to study in Germany? What is the reason?
+
+> **Your input** ->Job
+
+> OK! You study here because Job
+Do you know german language? Do you want to improve it while studying in Uni?
+
+> **Your input** ->Language improvement is a priority
+
+> OK! You think about the German language that: Language improvement is a priority
+Where are you from? (Your country where you have born)
+
+> **Your input** ->Russian by birth
+
+> OK! You are from: Russian by birth
+> Thank you for you responces. We have added them to our DataBase, but it is all anonymous
+> Your answers for questionnaire are Job, Language improvement is a priority, Russian by birth
+
+And this story helps to stop questionnaire form.
+
+```yaml
+- story: User interrupts the form and doesn't want to continue
+    steps:
+    - intent: ask_me_anything
+    - action: questionnaire_form
+    - active_loop: questionnaire_form
+    - intent: Stop
+    - action: utter_ask_continue
+    - intent: Stop
+    - action: action_deactivate_loop
+    - active_loop: null
+```
+
+### 1.5.8. give_information_for_one_elective
+
+Part of the story
+
+```yaml
+- story: Explore Elective Courses
+    steps:
+      - intent: ask_available_electives
+      - action: utter_ask_for_type_of_elective
+      - intent: say_type_of_elective
+      - action: give_list_of_electives
+      - intent: ask_for_information_about_one_elective
+      - action: give_information_for_one_elective
+      - intent: ask_how_to_register_for_one_elective
+      - action: utter_register_procedure_one_elective
+```
+
+Gives one elective, in which student is interested.
+
+### 1.5.9. give_list_of_electives
+
+Same as [give_information_for_one_elective](#158-give_information_for_one_elective), but for list of electives. Used before in the same story.
+
+The dialog flow with both custom actions may look like this:
+
+
+> **Your input** ->What electives can I choose from?
+
+> There are 3 types of electives: social, orientational_knowledge, german. Choose one.
+
+> **Your input** ->social
+
+> You can choose from several options:
+
+> Achtsamkeitsbasierte Stressreduktion (MBSR)
+>
+> Bavarian Culture
+>
+> Personal and Professional Skills
+>
+> Communication & Rhetoric for Mentors
+>
+> Cross-Cultural Teambuilding Workshop
+>
+> Education 4.0 - Digital Innovation Units
+>
+> Volunteering
+>
+> Ethical Questions in international and intercultural Environments. Argumentation, Debate and Negotiations.
+>
+> Leadership Psychology
+>
+> Happiness - Wie Sie unvermeidlich glücklich werden
+>
+> Interkulturelle Kompetenzen
+>
+> Interkulturelle Sensibilisierung (Grundkurs)
+>
+> Interkulturelle Sensibilisierung - Länderspezifisch (Aufbaukurs)
+>
+> Intercultural Skills
+>
+> International Teambuilding
+>
+> Kommunikation und Rhetorik für Erstsemesterpaten und Mentoren
+>
+> Kompetenzen und Techniken der tutoriellen Betreuung
+>
+> Konflikt- und Teammanagement
+>
+> Medienkompetenz und Lernen in einer digitalen Gesellschaft
+>
+> MINT-Workshops mit Schüler:innen als Tutor:in
+>
+> Persönlichkeitskompetenzen für dual Studierende
+>
+> Problemlösungen in der Praxis
+>
+> Qualitative Research Methods
+>
+> Strategie - und Projektmanagement
+>
+> Welcome@DIT
+>
+> Wissenschaftliches Arbeiten und Schreiben – Erfolgreich und effizient in Studien-, Bachelor- und Masterarbeiten
+>
+
+> **Your input** ->Welcome@DIT
+
+> You selected Welcome@DIT. Here is your link where you can find all information about this elective: 'https://www.th-deg.de/Studierende/AWP-Sprachkurse/kursbeschreibungen-awp/Welcome%40DIT.pdf'
+
+> **Your input** ->What should I do to register for this elective?
+
+> You need to write email to eva.toman@th-deg.de. Ask about Welcome@DIT
 
 ## 1.6. Architecture
 
@@ -347,18 +528,18 @@ Database can be used in variety of scenarios. It can be filled with students, th
 
 ```sql
 select * from student;
-student_mn	name	surname	gpa
-10817623	Jack	Perez	2.7
-12399158	Yvonne	Johnson	2.9
+student_mn name surname gpa
+10817623 Jack Perez 2.7
+12399158 Yvonne Johnson 2.9
 ```
 
 Table is also filled with all faculties and programmes, which were at DIT website.
 
 ```sql
 select * from faculty JOIN program LIMIT 2;
-faculty_id	faculty_name	program_id	program_name	faculty_id	program_type
-1	Civil and Construction Engineering	1	Civil and Construction Engineering 	1	Bachelor
-1	Civil and Construction Engineering	2	Construction Management 	1	Bachelor
+faculty_id faculty_name program_id program_name faculty_id program_type
+1 Civil and Construction Engineering 1 Civil and Construction Engineering  1 Bachelor
+1 Civil and Construction Engineering 2 Construction Management  1 Bachelor
 ```
 
 There is a table `programm_type`, which is responsible for holding programm types (Bachelor or Master).
