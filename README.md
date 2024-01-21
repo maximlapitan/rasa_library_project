@@ -561,4 +561,22 @@ Table `side_exam` used to get information regarding german language exams (goeth
 
 ## 1.7. Work done
 
+The project is done by 2 students, we divide our work like this:
+
+First student - Maxim Lapitan:
+
+1. Personas
+2. Example dialogs 
+3. Implementation yml-files (domain, data/nlu)
+
+Second student - Maxim Zotov:
+
+4. Use cases 
+5. Dialog flow 
+6. Implementation yml-files (data/stories data/rules)
+
+**Both** students:
+
+7. Implementation actions.py (data/actions/actions.py)
+
 Work was always carried out together without exceptions. We either sat together, or communicated via video chat and were implementing every task using 2 brains at the same time, thus reducing amount of human errors, because two eyes were looking at the project at the same time.
