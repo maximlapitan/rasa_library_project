@@ -31,6 +31,8 @@ Maxim Zotov 22200849
 
 [Link to MyGit repo](https://mygit.th-deg.de/mz20849/mm-sas)
 
+[Link to Wiki](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/home)
+
 ## 1.2. Project description
 
 This Rasa chatbot can help international students to learn German language. One can:
