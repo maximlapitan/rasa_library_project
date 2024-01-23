@@ -7,7 +7,7 @@
     - [1.3.1. Software version](#131-software-version)
     - [1.3.2. Installation steps](#132-installation-steps)
   - [1.4. Basic usage](#14-basic-usage)
-  - [1.5. Implementation of the Requests](#15-implementation-of-the-requests)
+  - [1.5. Implementation of custom actions](#15-implementation-of-custom-actions)
     - [1.5.1. trigger\_test\_responce](#151-trigger_test_responce)
     - [1.5.2. remember\_mn](#152-remember_mn)
     - [1.5.3. return\_faq](#153-return_faq)
@@ -17,11 +17,23 @@
     - [1.5.7. validate\_questionnaire\_form](#157-validate_questionnaire_form)
     - [1.5.8. give\_information\_for\_one\_elective](#158-give_information_for_one_elective)
     - [1.5.9. give\_list\_of\_electives](#159-give_list_of_electives)
-  - [1.6. Architecture](#16-architecture)
-    - [1.6.1. Rasa model](#161-rasa-model)
-    - [1.6.2. Web Server](#162-web-server)
-    - [1.6.3. Database](#163-database)
-  - [1.7. Work done](#17-work-done)
+  - [1.6. Implementation of the requests](#16-implementation-of-the-requests)
+    - [1.6.1. Exercise 02](#161-exercise-02)
+      - [1.6.1.1. Part 01](#1611-part-01)
+      - [1.6.1.2. Part 02](#1612-part-02)
+    - [1.6.2. Exercise 03](#162-exercise-03)
+      - [1.6.2.1. Part 01](#1621-part-01)
+      - [1.6.2.2. Part 02](#1622-part-02)
+      - [1.6.2.3. Part 03](#1623-part-03)
+    - [1.6.3. Exercise 04](#163-exercise-04)
+      - [1.6.3.1. Part 01](#1631-part-01)
+      - [1.6.3.2. Part 02](#1632-part-02)
+    - [1.6.4. Exercise 05](#164-exercise-05)
+  - [1.7. Architecture](#17-architecture)
+    - [1.7.1. Rasa model](#171-rasa-model)
+    - [1.7.2. Web Server](#172-web-server)
+    - [1.7.3. Database](#173-database)
+  - [1.8. Work done](#18-work-done)
 
 ## 1.1. Authors
 
@@ -144,7 +156,7 @@ Your setup may look like this
 
 ![](doc/3_windows.png)
 
-## 1.5. Implementation of the Requests
+## 1.5. Implementation of custom actions
 
 There are several rasa requests, which have to be extra processed. Therefore we have 12 slots and 8 entities together with 9 custom actions to produce user-tailored responces.
 
@@ -290,6 +302,8 @@ Example:
 
 > Check your email. It should be an email from <julia.vollbrecht@th-deg.de>. Inside this email you will be able to find instructions of registration. Good luck!
 
+Please note, that due to unknown rasa behaviour, this particular dialog doesn't work as planned anymore. Consider [nlu.yml](system/data/nlu.yml), [domain.yml](system/domain.yml) and [stories.yml](system/data/stories.yml) and check for yourselves that stories *should* work as intended.
+
 ### 1.5.5. exam_reg_procedure
 
 Part of the story
@@ -428,7 +442,6 @@ Same as [give_information_for_one_elective](#158-give_information_for_one_electi
 
 The dialog flow with both custom actions may look like this:
 
-
 > **Your input** ->What electives can I choose from?
 
 > There are 3 types of electives: social, orientational_knowledge, german. Choose one.
@@ -492,13 +505,65 @@ The dialog flow with both custom actions may look like this:
 
 > **Your input** ->Welcome@DIT
 
-> You selected Welcome@DIT. Here is your link where you can find all information about this elective: 'https://www.th-deg.de/Studierende/AWP-Sprachkurse/kursbeschreibungen-awp/Welcome%40DIT.pdf'
+> You selected Welcome@DIT. Here is your link where you can find all information about this elective: '<https://www.th-deg.de/Studierende/AWP-Sprachkurse/kursbeschreibungen-awp/Welcome%40DIT.pdf>'
 
 > **Your input** ->What should I do to register for this elective?
 
-> You need to write email to eva.toman@th-deg.de. Ask about Welcome@DIT
+> You need to write email to <eva.toman@th-deg.de>. Ask about Welcome@DIT
 
-## 1.6. Architecture
+## 1.6. Implementation of the requests
+
+You may visit [main wiki page](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/home) to get same information.
+
+### 1.6.1. Exercise 02
+
+#### 1.6.1.1. Part 01
+
+Domain: Academic Assistance
+
+Title: Language and Electives Assistant
+
+The right fit: yes, it fits right.
+
+Consult [Domain, title, right fit](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/domain,-title,-right-fit) wiki page to learn more
+
+#### 1.6.1.2. Part 02
+
+1 system persona (Shoshka) and 3 user personas (Mariyam, Arnold and Alina) were created.
+
+Learn more at [user personas](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/user-personas) wiki page
+
+### 1.6.2. Exercise 03
+
+#### 1.6.2.1. Part 01
+
+Totally 9 use cases were created. [Click here to learn more](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/user-journeys)
+
+#### 1.6.2.2. Part 02
+
+We identified 5 use cases from 9 created in [Part 1](#1621-part-01)
+
+#### 1.6.2.3. Part 03
+
+Technical prerequisite is information, obtained from THD website. See [this wiki page](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/technical-prerequisites)
+
+### 1.6.3. Exercise 04
+
+#### 1.6.3.1. Part 01
+
+Total of 22 stories were written. You can see all of them in [respective wiki page](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/sample-dialogs)
+
+#### 1.6.3.2. Part 02
+
+Flow diagram can be seen in [wiki](https://mygit.th-deg.de/mz20849/mm-sas/-/wikis/flow-diagram) or below.
+
+![flow diagram](doc/dialog_flowchart.png)
+
+### 1.6.4. Exercise 05
+
+All requirements are satisfied in [Installation instructions](#13-installation) and [basic usage](#14-basic-usage)
+
+## 1.7. Architecture
 
 Project consists of 3 parts:
 
@@ -506,11 +571,11 @@ Project consists of 3 parts:
 2. **Web Server** (built using rest-api approach) to facilitate responces from rasa model
 3. **Database**, to which server can connect and execute select commands.
 
-### 1.6.1. Rasa model
+### 1.7.1. Rasa model
 
 Simple rasa model, built with 3 entities, 6 slots, 6 custom actions, more than 20 stories, almost 50 intents and 6 rules.
 
-### 1.6.2. Web Server
+### 1.7.2. Web Server
 
 REST-API python server, built using flask. Has several REST addresses, to issue GET requests (by now only GET is supported).
 
@@ -520,7 +585,7 @@ REST-API python server, built using flask. Has several REST addresses, to issue 
 - `/languages/levels/<ll_value>` - return available courses for each level (A1-C1)
 - `/exams/<exam>` - get information about exams (goethe, telc, etc.)
 
-### 1.6.3. Database
+### 1.7.3. Database
 
 Database has the following structure:
 
@@ -561,20 +626,20 @@ must_be_taken
 
 Table `side_exam` used to get information regarding german language exams (goethe, telc etc.).
 
-## 1.7. Work done
+## 1.8. Work done
 
 The project is done by 2 students, we divide our work like this:
 
 First student - Maxim Lapitan:
 
 1. Personas
-2. Example dialogs 
+2. Example dialogs
 3. Implementation yml-files (domain, data/nlu)
 
 Second student - Maxim Zotov:
 
-4. Use cases 
-5. Dialog flow 
+4. Use cases
+5. Dialog flow
 6. Implementation yml-files (data/stories data/rules)
 
 **Both** students:
